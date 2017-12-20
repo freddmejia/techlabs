@@ -1,8 +1,8 @@
 //Se crea la base de la pantalla principal
-var game = new Phaser.Game(screen.width , screen.height, Phaser.AUTO, '', 
-	{ 	preload: cargarRecursos, 
-		create: crearJuego, 
-		update: actualizarJuego 
+var game = new Phaser.Game(screen.width , screen.height, Phaser.AUTO, '',
+	{ 	preload: cargarRecursos,
+		create: crearJuego,
+		update: actualizarJuego
 	});
 
 
@@ -25,6 +25,9 @@ function cargarRecursos()
 	game.load.spritesheet('btnJugar', 'img/boton_jugar.png', 190, 93, 1);
 	game.load.spritesheet('botones_inicio', 'img/botones_inicio.png', 550, 350, 3);
 	game.load.image('footer', 'img/footer.png');
+	game.load.image('copas', 'img/scoreButton.png');
+	game.load.image('levels', 'img/levels.png');
+	game.load.image('star', 'img/starButton.png');
 	//game.load.image('i_jugar', 'img/icono_jugar.png');
 	//game.load.image('lateral_izq', 'img/lateral.png');
 	//game.load.image('lateral_der', 'img/lateral.png');
@@ -37,11 +40,21 @@ function crearJuego()
 	fondo.width = screen.width;
 	fondo.height =  screen.height;
 	texto_bienvenido = game.add.sprite(0,0, 'texto_bienvenido');
-	footer = game.add.sprite(0, 680,'footer');
+	footer = game.add.sprite(0, window.innerHeight,'footer');
+	console.log(window.innerHeight);
 	footer.width = screen.width;
 	footer.height = 100;
+	copas = game.add.sprite(100, window.innerHeight, 'copas');
+	copas.width = 90;
+	copas.height = 90;
+	levels = game.add.sprite(600, window.innerHeight, 'levels');
+	levels.width = 90;
+	levels.height = 90;
+	star = game.add.sprite(1100, window.innerHeight, 'star');
+	star.width = 90;
+	star.height = 90;
 	//over , out, down
-	
+
 
 	if(window.devicePixelRatio == 2)
 	{
