@@ -32,12 +32,14 @@ var menu = {
   create: function()
   {
     //Aqui se procesa todo lo que corresponde al iniciar el juego
-  	fondo = game.add.sprite(0,0,'fondo');
+  	fondo = game.add.image(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
-  	texto_bienvenido = game.add.sprite(0,0, 'texto_bienvenido');
+  	texto_bienvenido = game.add.image(0,0, 'texto_bienvenido');
   	//over , out, down
 
+    console.log("esto " + game.width);
+    console.log(game.height);
 
   	if(window.devicePixelRatio == 2)
   	{
@@ -58,17 +60,17 @@ var menu = {
   	}
   	else
   	{
-  		footer = game.add.image(0, window.innerHeight,'footer');
+  		footer = game.add.image(0, game.world.centerY + 400,'footer');
   		console.log(window.innerHeight);
   		footer.width = screen.width;
   		footer.height = 100;
-  		copas = game.add.image(game.world.centerX - 700, window.innerHeight, 'copas');
+  		copas = game.add.image(game.world.centerX - 700, game.world.centerY + 400, 'copas');
   		copas.width = 90;
   		copas.height = 90;
-  		levels = game.add.image(game.world.centerX - 100, window.innerHeight, 'levels');
+  		levels = game.add.image(game.world.centerX - 100, game.world.centerY + 400, 'levels');
   		levels.width = 90;
   		levels.height = 90;
-  		star = game.add.image(game.world.centerX + 500, window.innerHeight, 'star');
+  		star = game.add.image(game.world.centerX + 500, game.world.centerY + 400, 'star');
   		star.width = 90;
   		star.height = 90;
   		button = game.add.button(game.world.centerX - 315, 200, 'botones_inicio', this.actionOnClick, this, 1,0,2);
@@ -114,8 +116,8 @@ var menu = {
   	//Aqui pasa al juego
     console.log('Pulsado');
     //Aqui agrega la fase del juego con lo tuyo de esta manera:
-    //game.state.add('Menu', menu);
-    //game.state.start('Menu');
+    game.state.add('nivelManos', nivel_lavar_manos);
+    game.state.start('nivelManos');
   },
 
 };
