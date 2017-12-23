@@ -1,13 +1,11 @@
 
 //Nivel de lavados de Manos
-
-
 var fondo;
 var derecha;
 var izquierda;
 var button1;
 var button2;
-var imagen;
+var imagen0;
 var imagen1;
 var imagen2;
 var imagen3;
@@ -18,6 +16,7 @@ var group;
 var con=0;
 var text=0;
 var timer=0;
+
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [8,8,8,8,8,8,8,8];
@@ -32,7 +31,7 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-  	imagen0=game.load.image('imagen','img/dientes/1.png');
+  	imagen0=game.load.image('imagen0','img/dientes/1.png');
   	imagen1=game.load.image('imagen1','img/dientes/2.png');
   	imagen2=game.load.image('imagen2','img/dientes/3.png');
   	imagen3=game.load.image('imagen3','img/dientes/4.png');
@@ -42,8 +41,8 @@ var nivel_lavar_manos = {
   	imagen7=game.load.image('imagen7','img/dientes/8.png');
 
   	//cargar la imagen
-  	group=game.add.group();
-  	group.enableBody = true;
+  	//group = game.add.group();
+  	//group.enableBody = true;
   },
 
   create: function()
@@ -52,7 +51,7 @@ var nivel_lavar_manos = {
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
 
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
+      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen0');
       imagen0.width = 200;
       imagen0.height = 280;
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
@@ -83,13 +82,13 @@ var nivel_lavar_manos = {
   */
 
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 20, this.fadePicture, this);
+      game.time.events.add(Phaser.Timer.SECOND * 5, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
   },
 
   fadePicture: function()
   {
-    game.add.tween(imagen).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen3).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -97,12 +96,11 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-
   },
 
   update: function()
   {
-    game.physics.enable(group, Phaser.Physics.Arcade);
+    //game.physics.enable(group, Phaser.Physics.Arcade);
     //group.body.velocity.x -= 150;
 
   },
@@ -110,6 +108,90 @@ var nivel_lavar_manos = {
   render: function()
   {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
+  },
+
+  randomImage: function()
+  {
+    //Procedimiento de llenado aleatorio
+    //Itero imagen por imagen
+    for(var i = 0; i > 8; i++)
+    {
+      var n;
+      do
+      {
+        //Genero un numero aleatorio
+        n = Math.floor((Math.random() * 7));
+      }while(this.verificarPosicion(n_temp));
+      console.log(n);
+      posiciones[i] == n;
+
+    }
+  },
+
+  verificarPosicion: function(numero)
+  {
+    var existe = false;
+    for(var i = 0; i > posiciones.length; i++)
+    {
+        if(posiciones[i] == numero)
+        {
+          existe = true;
+          return existe;
+        }
+    }
+    return existe;
+  },
+
+  fillImages: function()
+  {
+    for(var i = 0; i > posiciones.length; i++)
+    {
+      switch (i) {
+        case 0:
+          var temp_imagen0 = game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen' + i);
+          temp_imagen0.width = 200;
+          temp_imagen0.height = 280;
+          game.add.tween(temp_imagen0).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
+          break;
+        case 1:
+          imagen1 = game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen' + i);
+          imagen1.width = 200;
+          imagen1.height = 280;
+          break;
+        case 2:
+          imagen2= game.add.sprite(game.world.centerX, game.world.centerY - 300, 'imagen' + i);
+          imagen2.width = 200;
+          imagen2.height = 280;
+          break;
+        case 3:
+          imagen3= game.add.sprite(game.world.centerX + 300, game.world.centerY - 300, 'imagen' + i);
+          imagen3.width = 200;
+          imagen3.height = 280;
+          break;
+        case 4:
+          imagen4= game.add.sprite(game.world.centerX - 600, game.world.centerY,  'imagen' + i);
+          imagen4.width = 200;
+          imagen4.height = 280;
+          break;
+        case 5:
+          imagen5= game.add.sprite(game.world.centerX - 300, game.world.centerY,  'imagen' + i);
+          imagen5.width = 200;
+          imagen5.height = 280;
+          break;
+        case 6:
+          imagen6= game.add.sprite(game.world.centerX, game.world.centerY,  'imagen' + i);
+          imagen6.width = 200;
+          imagen6.height = 280;
+          break;
+        case 7:
+          imagen7= game.add.sprite(game.world.centerX + 300, game.world.centerY,  'imagen' + i);
+          imagen7.width = 200;
+          imagen7.height = 280;
+          break;
+        default:
+
+      }
+    }
   },
 
 };

@@ -56,7 +56,6 @@ var menu = {
   		star = game.add.image(game.world.centerX - 20, game.world.centerY  + 120, 'star');
   		star.width = 60;
   		star.height = 60;
-
   	}
   	else
   	{
