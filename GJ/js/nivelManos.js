@@ -7,7 +7,7 @@ var derecha;
 var izquierda;
 var button1;
 var button2;
-var imagen;
+var imagen0;
 var imagen1;
 var imagen2;
 var imagen3;
@@ -21,6 +21,7 @@ var timer=0;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [];
+var tween;
 
 var nivel_lavar_manos = {
   preload: function()
@@ -32,14 +33,14 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-  	imagen0=game.load.image('imagen','img/dientes/1.png');
-  	imagen1=game.load.image('imagen1','img/dientes/2.png');
-  	imagen2=game.load.image('imagen2','img/dientes/3.png');
-  	imagen3=game.load.image('imagen3','img/dientes/4.png');
-  	imagen4=game.load.image('imagen4','img/dientes/5.png');
-  	imagen5=game.load.image('imagen5','img/dientes/6.png');
-  	imagen6=game.load.image('imagen6','img/dientes/7.png');
-  	imagen7=game.load.image('imagen7','img/dientes/8.png');
+  	game.load.image('imagen0','img/dientes/1.png');
+  	game.load.image('imagen1','img/dientes/2.png');
+  	game.load.image('imagen2','img/dientes/3.png');
+  	game.load.image('imagen3','img/dientes/4.png');
+  	game.load.image('imagen4','img/dientes/5.png');
+  	game.load.image('imagen5','img/dientes/6.png');
+  	game.load.image('imagen6','img/dientes/7.png');
+  	game.load.image('imagen7','img/dientes/8.png');
 
   	//cargar la imagen
   	group=game.add.group();
@@ -98,20 +99,14 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-<<<<<<< HEAD
-    posiciones = this.getRandomArray(0,7);
-    for(var i = 0; i < posiciones.length; i++)
+    //posiciones = this.getRandomArray(0,7);
+    /*for(var i = 0; i < posiciones.length; i++)
     {
       console.log(posiciones[i]);
-    }
-    alert(posiciones);
-    //game.state.add('juego_manos', juego_manos);
-    //game.state.start('juego_manos');
-=======
-    //alert(this.getRandomArray(0, 7));
-    game.state.add('juego_manos', juego_manos);
-    game.state.start('juego_manos');
->>>>>>> 3b859091fddecdedf94530b26fd8b895d9d6b180
+    }*/
+    //alert(posiciones);
+    tween.onComplete.add(this.cambiarVista, this);
+    tween.start();
   },
 
   update: function()
@@ -124,6 +119,12 @@ var nivel_lavar_manos = {
   render: function()
   {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
+  },
+
+  cambiarVista: function()
+  {
+    game.state.add('juego_manos', juego_manos);
+    game.state.start('juego_manos');
   },
 
   /*randomImage: function()
