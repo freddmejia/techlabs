@@ -98,6 +98,7 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+<<<<<<< HEAD
     posiciones = this.getRandomArray(0,7);
     for(var i = 0; i < posiciones.length; i++)
     {
@@ -106,6 +107,11 @@ var nivel_lavar_manos = {
     alert(posiciones);
     //game.state.add('juego_manos', juego_manos);
     //game.state.start('juego_manos');
+=======
+    //alert(this.getRandomArray(0, 7));
+    game.state.add('juego_manos', juego_manos);
+    game.state.start('juego_manos');
+>>>>>>> 3b859091fddecdedf94530b26fd8b895d9d6b180
   },
 
   update: function()
