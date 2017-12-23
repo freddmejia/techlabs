@@ -32,7 +32,7 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-  	imagen0=game.load.image('imagen','img/dientes/1.png');
+  	
   	imagen1=game.load.image('imagen1','img/dientes/2.png');
   	imagen2=game.load.image('imagen2','img/dientes/3.png');
   	imagen3=game.load.image('imagen3','img/dientes/4.png');
@@ -40,7 +40,7 @@ var nivel_lavar_manos = {
   	imagen5=game.load.image('imagen5','img/dientes/6.png');
   	imagen6=game.load.image('imagen6','img/dientes/7.png');
   	imagen7=game.load.image('imagen7','img/dientes/8.png');
-
+    imagen0=game.load.image('imagen','img/dientes/1.png');
   	//cargar la imagen
   	group=game.add.group();
   	group.enableBody = true;
@@ -54,7 +54,7 @@ var nivel_lavar_manos = {
 
       imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
       imagen0.width = 200;
-      imagen0.height = 280;
+      imagen0.height = 280;      
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
       imagen1.width = 200;
       imagen1.height = 280;
@@ -64,6 +64,7 @@ var nivel_lavar_manos = {
       imagen3= game.add.sprite(game.world.centerX + 300, game.world.centerY - 300, 'imagen3');
       imagen3.width = 200;
       imagen3.height = 280;
+
       //---------------------------------------------------------------------------------------
       imagen4= game.add.sprite(game.world.centerX - 600, game.world.centerY,  'imagen4');
       imagen4.width = 200;
@@ -97,8 +98,9 @@ var nivel_lavar_manos = {
     game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //alert(this.getRandomArray(0, 7));
+
+    //tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    imagen0.destroy();
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');
   },
