@@ -98,9 +98,9 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    alert(this.getRandomArray(0, 7));
-    //game.state.add('juego_manos', juego_manos);
-    //game.state.start('juego_manos');
+    //alert(this.getRandomArray(0, 7));
+    game.state.add('juego_manos', juego_manos);
+    game.state.start('juego_manos');
   },
 
   update: function()
