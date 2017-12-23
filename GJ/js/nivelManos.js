@@ -120,8 +120,8 @@ var nivel_lavar_manos = {
       do
       {
         //Genero un numero aleatorio
-        n = Math.floor((Math.random() * 7));
-      }while(this.verificarPosicion(n_temp));
+        n = Math.floor((Math.random() * 7));//2
+      }while(this.verificarPosicion(n));
       console.log(n);
       posiciones[i] == n;
 
