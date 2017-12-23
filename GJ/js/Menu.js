@@ -40,7 +40,7 @@ var menu = {
 
     console.log("esto " + game.width);
     console.log(game.height);
-
+   // console.log(window.devicePixelRatio);
   	if(window.devicePixelRatio == 2)
   	{
   		texto_bienvenido.scale.setTo(window.devicePixelRatio/6,window.devicePixelRatio/6);
@@ -56,20 +56,22 @@ var menu = {
   		star = game.add.image(game.world.centerX - 20, game.world.centerY  + 120, 'star');
   		star.width = 60;
   		star.height = 60;
+
   	}
   	else
   	{
-  		footer = game.add.image(0, game.world.centerY + 400,'footer');
+      console.log('por Aqui');
+  		footer = game.add.image(0, game.world.centerY + 300 ,'footer');
   		console.log(window.innerHeight);
   		footer.width = screen.width;
   		footer.height = 100;
-  		copas = game.add.image(game.world.centerX - 700, game.world.centerY + 400, 'copas');
+  		copas = game.add.image(game.world.centerX - 600, game.world.centerY + 300, 'copas');
   		copas.width = 90;
   		copas.height = 90;
-  		levels = game.add.image(game.world.centerX - 100, game.world.centerY + 400, 'levels');
+  		levels = game.add.image(game.world.centerX - 100, game.world.centerY + 300, 'levels');
   		levels.width = 90;
   		levels.height = 90;
-  		star = game.add.image(game.world.centerX + 500, game.world.centerY + 400, 'star');
+  		star = game.add.image(game.world.centerX + 500, game.world.centerY + 300, 'star');
   		star.width = 90;
   		star.height = 90;
   		button = game.add.button(game.world.centerX - 315, 200, 'botones_inicio', this.actionOnClick, this, 1,0,2);
