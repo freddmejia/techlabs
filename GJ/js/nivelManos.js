@@ -33,7 +33,6 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-<<<<<<< HEAD
   	game.load.image('imagen0','img/dientes/1.png');
   	game.load.image('imagen1','img/dientes/2.png');
   	game.load.image('imagen2','img/dientes/3.png');
@@ -43,17 +42,6 @@ var nivel_lavar_manos = {
   	game.load.image('imagen6','img/dientes/7.png');
   	game.load.image('imagen7','img/dientes/8.png');
 
-=======
-  	
-  	imagen1=game.load.image('imagen1','img/dientes/2.png');
-  	imagen2=game.load.image('imagen2','img/dientes/3.png');
-  	imagen3=game.load.image('imagen3','img/dientes/4.png');
-  	imagen4=game.load.image('imagen4','img/dientes/5.png');
-  	imagen5=game.load.image('imagen5','img/dientes/6.png');
-  	imagen6=game.load.image('imagen6','img/dientes/7.png');
-  	imagen7=game.load.image('imagen7','img/dientes/8.png');
-    imagen0=game.load.image('imagen','img/dientes/1.png');
->>>>>>> e24c43281ff81bc623810cdf7a51ce047c9de948
   	//cargar la imagen
   	group=game.add.group();
   	group.enableBody = true;
@@ -67,7 +55,7 @@ var nivel_lavar_manos = {
 
       imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
       imagen0.width = 200;
-      imagen0.height = 280;      
+      imagen0.height = 280;
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
       imagen1.width = 200;
       imagen1.height = 280;
@@ -92,11 +80,6 @@ var nivel_lavar_manos = {
       imagen7.width = 200;
       imagen7.height = 280;
 
-    /*
-      text = game.add.text(game.world.centerX, 550, 'Counter: 0', { font: "64px Arial", fill: "#ffffff", align: "center" });
-      text.anchor.setTo(0.5, 0.5);
-  */
-
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
       game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
@@ -114,34 +97,9 @@ var nivel_lavar_manos = {
 
     //tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     imagen0.destroy();
-<<<<<<< HEAD
-=======
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //posiciones = this.getRandomArray(0,7);
-    /*for(var i = 0; i < posiciones.length; i++)
-    {
-      console.log(posiciones[i]);
-<<<<<<< HEAD
-    }*/
-    //alert(posiciones);
     tween.onComplete.add(this.cambiarVista, this);
     tween.start();
-=======
-    }
-    alert(posiciones);
-    //game.state.add('juego_manos', juego_manos);
-    //game.state.start('juego_manos');
-=======
-    //alert(this.getRandomArray(0, 7));
->>>>>>> ae713a01552deacfd2ce91015aa05fec2a1a8c75
-    game.state.add('juego_manos', juego_manos);
-    game.state.start('juego_manos');
->>>>>>> 3b859091fddecdedf94530b26fd8b895d9d6b180
->>>>>>> e24c43281ff81bc623810cdf7a51ce047c9de948
-=======
-    game.state.add('juego_manos', juego_manos);
-    game.state.start('juego_manos');
->>>>>>> eaa2f9f7c9c5881be2c694995ce795e1a7cadfd6
   },
 
   update: function()
@@ -161,46 +119,6 @@ var nivel_lavar_manos = {
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');
   },
-
-  /*randomImage: function()
-  {
-    //Procedimiento de llenado aleatorio
-    //Itero imagen por imagen
-
-    for(var i = 0; i < 8; i++)
-    {
-      var n;
-      var o = 0;
-      do
-      {
-        //Genero un numero aleatorio
-        n = Math.floor((Math.random() * 6));
-        console.log("veces repetidas" + o++);
-        console.log("numero generado" + n);
-      }while(this.verificarPosicion(n));
-      console.log("numero asiganado " + n);
-      posiciones[i] = n;
-
-    }
-  },
-
-  verificarPosicion: function(numero)
-  {
-    var existe = false;
-    var c = 0;
-    var d = 0;
-    for(var i = 0; i < 8; i++)
-    {
-        if(posiciones[i] == numero)
-        {
-          console.log("veces acertadas" + d++);
-          existe = true;
-          return existe;
-        }
-        console.log("veces verificadas" + c++);
-    }
-    return existe;
-  },*/
 
   fillImages: function()
   {
