@@ -52,7 +52,7 @@ var nivel_lavar_manos = {
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
 
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
+      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen0');
       imagen0.width = 200;
       imagen0.height = 280;
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
@@ -98,7 +98,12 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    alert(this.getRandomArray(0, 7));
+    posiciones = this.getRandomArray(0,7);
+    for(var i = 0; i < posiciones.length; i++)
+    {
+      console.log(posiciones[i]);
+    }
+    alert(posiciones);
     //game.state.add('juego_manos', juego_manos);
     //game.state.start('juego_manos');
   },
@@ -161,7 +166,7 @@ var nivel_lavar_manos = {
     {
       switch (i) {
         case 0:
-          var temp_imagen0 = game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen' + i);
+          image0 = game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen' + i);
           temp_imagen0.width = 200;
           temp_imagen0.height = 280;
           game.add.tween(temp_imagen0).to( { alpha: 1 }, 2000, Phaser.Easing.Linear.None, true);
