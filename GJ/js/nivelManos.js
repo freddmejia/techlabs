@@ -20,7 +20,7 @@ var tween;
 
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
-var posiciones = [8,8,8,8,8,8,8,8];
+var posiciones = [];
 
 var nivel_lavar_manos = {
   preload: function()
@@ -96,8 +96,7 @@ var nivel_lavar_manos = {
   fadePicture: function()
   {
     tween = game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //tween.onComplete.add(this.randomImage, this);
-    alert(this.getRandomArray(0, 7));
+    tween.onComplete.add(this., this);
     tween.start();
     //game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     //game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -120,7 +119,7 @@ var nivel_lavar_manos = {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
   },
 
-  randomImage: function()
+  /*randomImage: function()
   {
     //Procedimiento de llenado aleatorio
     //Itero imagen por imagen
@@ -158,7 +157,7 @@ var nivel_lavar_manos = {
         console.log("veces verificadas" + c++);
     }
     return existe;
-  },
+  },*/
 
   fillImages: function()
   {
