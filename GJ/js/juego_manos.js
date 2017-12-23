@@ -18,20 +18,25 @@ var group;
 var con=0;
 var text=0;
 var timer=0;
+var emitter;
+var n=0;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [8,8,8,8,8,8,8,8];
-
-var nivel_lavar_manos = {
+var ran=0;
+var anterior=0;
+var cont=0;
+var existe=false;
+var juego_manos = {
   preload: function()
   {
+    console.log('clase nueva');
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
   	game.scale.pageAlignVertically = true;
   	game.scale.setScreenSize(true);
   	game.load.image('fondo','img/fondo.jpg');
-  	game.load.image('derecha', 'img/derecha.png');
-  	game.load.image('izquierda', 'img/izquierda.png');
+
   	imagen0=game.load.image('imagen','img/dientes/1.png');
   	imagen1=game.load.image('imagen1','img/dientes/2.png');
   	imagen2=game.load.image('imagen2','img/dientes/3.png');
@@ -51,8 +56,29 @@ var nivel_lavar_manos = {
     fondo=game.add.sprite(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
+    //console.log("random "+Math.floor(Math.random()*3));
+        //  console.log("random "+Math.floor(Math.random() * 7));
 
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
+
+
+      }/*,
+
+  verificarPosicion: function(numero)
+  {
+     existe = false;
+     console.log("numero entrante " +numero);
+    for(var q = 0; q < posiciones.length+1; q++)
+    {
+        if(posiciones[q] == numero)
+        {
+          existe = true;
+         // console.log('existe');
+          return existe;
+        }
+    }
+    return existe;
+  },*/
+    /*  imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
       imagen0.width = 200;
       imagen0.height = 280;
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
@@ -77,17 +103,19 @@ var nivel_lavar_manos = {
       imagen7= game.add.sprite(game.world.centerX + 300, game.world.centerY,  'imagen7');
       imagen7.width = 200;
       imagen7.height = 280;
+      */
 
-    /*  
-      text = game.add.text(game.world.centerX, 550, 'Counter: 0', { font: "64px Arial", fill: "#ffffff", align: "center" });
-      text.anchor.setTo(0.5, 0.5);
-  */
 
-      //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
-      //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
-  },
+  /*},
+  update: function()
+  {
+    emitter=game.add.emitter(game.worl.centerX,200,200);
+    emitter.makeParticles(['imagen','imagen1','imagen2']);
+    emitter.start(true,5000,20);
+  }*/
 
+  /*,
+  
   fadePicture: function()
   {
     game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -99,9 +127,8 @@ var nivel_lavar_manos = {
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 
-    
-    game.state.add('juego_manos', juego_manos);
-    game.state.start('juego_manos');
+    game.state.add('leaderboard', leaderBoard);
+    game.state.start('leaderboard');
   },
 
   update: function()
@@ -115,5 +142,5 @@ var nivel_lavar_manos = {
   {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
   },
-
+*/
 };
