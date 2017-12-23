@@ -16,6 +16,7 @@ var group;
 var con=0;
 var text=0;
 var timer=0;
+var tween;
 
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
@@ -77,25 +78,34 @@ var nivel_lavar_manos = {
       imagen7.width = 200;
       imagen7.height = 280;
 
+      //this.randomImage();
+
     /*  text = game.add.text(game.world.centerX, 550, 'Counter: 0', { font: "64px Arial", fill: "#ffffff", align: "center" });
       text.anchor.setTo(0.5, 0.5);
   */
 
+      sprites = game.add.group();
+      sprites.create();
+
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
       game.time.events.add(Phaser.Timer.SECOND * 5, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
+
   },
 
   fadePicture: function()
   {
-    game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen3).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    tween = game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //tween.onComplete.add(this.randomImage, this);
+    alert(this.getRandomArray(0, 7));
+    tween.start();
+    //game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen3).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    //game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
   },
 
   update: function()
@@ -114,16 +124,27 @@ var nivel_lavar_manos = {
   {
     //Procedimiento de llenado aleatorio
     //Itero imagen por imagen
-    for(var i = 0; i > 8; i++)
+
+    for(var i = 0; i < 8; i++)
     {
       var n;
+      var o = 0;
       do
       {
         //Genero un numero aleatorio
+<<<<<<< HEAD
         n = Math.floor((Math.random() * 7));//2
       }while(this.verificarPosicion(n));
       console.log(n);
       posiciones[i] == n;
+=======
+        n = Math.floor((Math.random() * 6));
+        console.log("veces repetidas" + o++);
+        console.log("numero generado" + n);
+      }while(this.verificarPosicion(n));
+      console.log("numero asiganado " + n);
+      posiciones[i] = n;
+>>>>>>> e3b32639f379cc8103e028729d9780dc22f68f47
 
     }
   },
@@ -131,13 +152,17 @@ var nivel_lavar_manos = {
   verificarPosicion: function(numero)
   {
     var existe = false;
-    for(var i = 0; i > posiciones.length; i++)
+    var c = 0;
+    var d = 0;
+    for(var i = 0; i < 8; i++)
     {
         if(posiciones[i] == numero)
         {
+          console.log("veces acertadas" + d++);
           existe = true;
           return existe;
         }
+        console.log("veces verificadas" + c++);
     }
     return existe;
   },
@@ -193,5 +218,12 @@ var nivel_lavar_manos = {
       }
     }
   },
+
+  getRandomArray: function(min,max){
+    var A= [];
+    while(max>= min) A.push(max--)
+    A.sort(function(){return .5- Math.random()});
+    return A;
+  }
 
 };
