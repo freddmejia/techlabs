@@ -78,7 +78,7 @@ var nivel_lavar_manos = {
       imagen7.width = 200;
       imagen7.height = 280;
 
-    /*  
+    /*
       text = game.add.text(game.world.centerX, 550, 'Counter: 0', { font: "64px Arial", fill: "#ffffff", align: "center" });
       text.anchor.setTo(0.5, 0.5);
   */
@@ -90,18 +90,6 @@ var nivel_lavar_manos = {
 
   fadePicture: function()
   {
-<<<<<<< HEAD
-    tween = game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    tween.onComplete.add(this., this);
-    tween.start();
-    //game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen3).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    //game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-=======
     game.add.tween(imagen0).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen1).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen2).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -109,12 +97,10 @@ var nivel_lavar_manos = {
     game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-
-    
+    tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    alert(this.getRandomArray());
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');
->>>>>>> df6b82d565ddd966f940000b4d0e9dc9bd61960a
   },
 
   update: function()
@@ -129,7 +115,6 @@ var nivel_lavar_manos = {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
   },
 
-<<<<<<< HEAD
   /*randomImage: function()
   {
     //Procedimiento de llenado aleatorio
@@ -228,7 +213,4 @@ var nivel_lavar_manos = {
     A.sort(function(){return .5- Math.random()});
     return A;
   }
-
-=======
->>>>>>> df6b82d565ddd966f940000b4d0e9dc9bd61960a
 };
