@@ -18,6 +18,9 @@ var group;
 var con=0;
 var text=0;
 var timer=0;
+//Creo estructura de dato que me permitira guardar las posiciones ya llenadas
+//Primero las creo vacias
+var posiciones = [8,8,8,8,8,8,8,8];
 
 var nivel_lavar_manos = {
   preload: function()
@@ -29,7 +32,7 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-  	imagen=game.load.image('imagen','img/dientes/1.png');
+  	imagen0=game.load.image('imagen','img/dientes/1.png');
   	imagen1=game.load.image('imagen1','img/dientes/2.png');
   	imagen2=game.load.image('imagen2','img/dientes/3.png');
   	imagen3=game.load.image('imagen3','img/dientes/4.png');
@@ -48,15 +51,32 @@ var nivel_lavar_manos = {
     fondo=game.add.sprite(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
-      imagen= game.add.sprite(0, game.world.centerY - 300, 'imagen');
-      imagen1= game.add.sprite(200, game.world.centerY - 300, 'imagen1');
-      imagen2= game.add.sprite(400, game.world.centerY - 300, 'imagen2');
-      imagen3= game.add.sprite(600, game.world.centerY - 300, 'imagen3');
-      imagen4= game.add.sprite(0, game.world.centerY - 50,  'imagen4');
-      imagen5= game.add.sprite(200, game.world.centerY - 50,  'imagen5');
-      imagen6= game.add.sprite(400, game.world.centerY - 50,  'imagen6');
-      imagen7= game.add.sprite(600, game.world.centerY - 50,  'imagen7');
 
+      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
+      imagen0.width = 200;
+      imagen0.height = 280;
+      imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
+      imagen1.width = 200;
+      imagen1.height = 280;
+      imagen2= game.add.sprite(game.world.centerX, game.world.centerY - 300, 'imagen2');
+      imagen2.width = 200;
+      imagen2.height = 280;
+      imagen3= game.add.sprite(game.world.centerX + 300, game.world.centerY - 300, 'imagen3');
+      imagen3.width = 200;
+      imagen3.height = 280;
+      //---------------------------------------------------------------------------------------
+      imagen4= game.add.sprite(game.world.centerX - 600, game.world.centerY,  'imagen4');
+      imagen4.width = 200;
+      imagen4.height = 280;
+      imagen5= game.add.sprite(game.world.centerX - 300, game.world.centerY,  'imagen5');
+      imagen5.width = 200;
+      imagen5.height = 280;
+      imagen6= game.add.sprite(game.world.centerX, game.world.centerY,  'imagen6');
+      imagen6.width = 200;
+      imagen6.height = 280;
+      imagen7= game.add.sprite(game.world.centerX + 300, game.world.centerY,  'imagen7');
+      imagen7.width = 200;
+      imagen7.height = 280;
 
     /*  text = game.add.text(game.world.centerX, 550, 'Counter: 0', { font: "64px Arial", fill: "#ffffff", align: "center" });
       text.anchor.setTo(0.5, 0.5);
@@ -77,6 +97,7 @@ var nivel_lavar_manos = {
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+
   },
 
   update: function()
