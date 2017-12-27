@@ -53,7 +53,7 @@ var nivel_lavar_manos = {
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
 
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen');
+      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen0');
       imagen0.width = 200;
       imagen0.height = 280;
       imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
@@ -94,9 +94,6 @@ var nivel_lavar_manos = {
     game.add.tween(imagen4).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen5).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     game.add.tween(imagen6).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-
-    //tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    imagen0.destroy();
     tween = game.add.tween(imagen7).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
     tween.onComplete.add(this.cambiarVista, this);
     tween.start();

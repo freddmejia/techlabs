@@ -68,12 +68,12 @@ var juego_manos = {
     //console.log("random "+Math.floor(Math.random()*3));
     //  console.log("random "+Math.floor(Math.random() * 7));
     aa=this.getRandomArray(0, 7);
-    //for (var i = 0; i < aa.length; i++) {
+    for (var i = 0; i < aa.length; i++) {
 
-      this.fillImages11(aa[1]);
+      this.fillImages11(aa[i]);
 
-      //console.log(aa[i]);
-    //}
+      console.log(aa[i]);
+    }
   //  alert(this.getRandomArray(0, 7));
   },
   getRandomArray: function(min,max){
@@ -93,13 +93,13 @@ var juego_manos = {
         xx=980;
         yy=384;
       }
-      //cn = game.add.sprite(xx, yy, cn);
-      //cn.inputEnabled = true;
-      //cn.input.enableDrag();
-      //cn.width = 200;
-      //cn.height = 280;
-      //xx=xx-300;
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, "imagen0");
+      cn = game.add.sprite(xx, yy, cn);
+      cn.inputEnabled = true;
+      cn.input.enableDrag();
+      cn.width = 200;
+      cn.height = 280;
+      xx=xx-300;
+      /*imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, "imagen0");
       imagen0.inputEnabled = true;
       imagen0.input.enableDrag();
       imagen0.width = 200;
@@ -108,7 +108,7 @@ var juego_manos = {
       imagen1.inputEnabled = true;
       imagen1.input.enableDrag();
       imagen1.width = 200;
-      imagen1.height = 280;
+      imagen1.height = 280;*/
       console.log()
       console.log(cn);
       console.log(xx+"  "+yy);
@@ -217,6 +217,21 @@ var juego_manos = {
   {
     //game.debug.spriteBounds(imagen0);
     //game.debug.spriteBounds(imagen1);
+  },
+
+  startDrag: function()
+  {
+
+  },
+
+  stopDrag: function()
+  {
+
+  },
+
+  cambiarCasilla(posCasillaMovX, posCasillaMovY)
+  {
+
   },
 
 };
