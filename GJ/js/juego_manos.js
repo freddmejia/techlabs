@@ -55,9 +55,6 @@ var juego_manos = {
   	game.load.image('imagen5','img/dientes/6.png');
   	game.load.image('imagen6','img/dientes/7.png');
   	game.load.image('imagen7','img/dientes/8.png');
-  	//cargar la imagen
-  	group=game.add.group();
-  	group.enableBody = true;
   },
 
   create: function()
@@ -65,15 +62,19 @@ var juego_manos = {
     fondo=game.add.sprite(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
+    //cargar la imagen
+  	group = game.add.group();
+  	//group.enableBody = true;
+    group.inputEnableChildren = true;
     //console.log("random "+Math.floor(Math.random()*3));
     //  console.log("random "+Math.floor(Math.random() * 7));
     aa=this.getRandomArray(0, 7);
-    for (var i = 0; i < aa.length; i++) {
+    //for (var i = 0; i < aa.length; i++) {
 
-      this.fillImages11(aa[i]);
-
-      console.log(aa[i]);
-    }
+      //this.fillImages11(aa[i]);
+      this.fillImages11();
+      //console.log(aa[i]);
+    //}
   //  alert(this.getRandomArray(0, 7));
   },
   getRandomArray: function(min,max){
@@ -83,35 +84,39 @@ var juego_manos = {
     return A;
   },
 
-  fillImages11:function(i)
+  fillImages11:function()
   {
-      cn="imagen"+i;
+      //cn="imagen"+i;
       //console.log(cn.trim());
-      contador=contador+1;
-      if(contador==5)
-      {
-        xx=980;
-        yy=384;
-      }
-      cn = game.add.sprite(xx, yy, cn);
-      cn.inputEnabled = true;
-      cn.input.enableDrag();
-      cn.width = 200;
-      cn.height = 280;
-      xx=xx-300;
-      /*imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, "imagen0");
+      //contador=contador+1;
+      //if(contador==5)
+      //{
+      //  xx=980;
+      //  yy=384;
+      //}
+      //cn = game.add.sprite(xx, yy, cn);
+      //cn.inputEnabled = true;
+      //cn.input.enableDrag();
+      //cn.width = 200;
+      //cn.height = 280;
+      //xx=xx-300;
+      //imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, "imagen0");
+      imagen0 = group.create(game.world.centerX - 600, game.world.centerY - 300, "imagen0");
       imagen0.inputEnabled = true;
       imagen0.input.enableDrag();
       imagen0.width = 200;
       imagen0.height = 280;
-      imagen1 = game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, "imagen1");
+      //imagen1 = game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, "imagen1");
+      imagen1 = group.create(game.world.centerX - 300, game.world.centerY - 300, "imagen1");
       imagen1.inputEnabled = true;
       imagen1.input.enableDrag();
       imagen1.width = 200;
-      imagen1.height = 280;*/
-      console.log()
-      console.log(cn);
-      console.log(xx+"  "+yy);
+      imagen1.height = 280;
+      group.onChildInputDown.add(this.onDown, this);
+
+      //console.log()
+      //console.log(cn);
+      //console.log(xx+"  "+yy);
   },
 
     fillImages: function(i)
@@ -191,12 +196,10 @@ var juego_manos = {
   },
 
   checkOverlap: function(spriteA, spriteB) {
-
     var boundsA = spriteA.getBounds();
     var boundsB = spriteB.getBounds();
 
     return Phaser.Rectangle.intersects(boundsA, boundsB);
-
   },
 
   onDragStart: function(sprite, pointer) {
@@ -232,6 +235,10 @@ var juego_manos = {
   cambiarCasilla(posCasillaMovX, posCasillaMovY)
   {
 
+  },
+
+  onDown: function(sprite, pointer) {
+    console.log(pointer.x, pointer.y);
   },
 
 };
