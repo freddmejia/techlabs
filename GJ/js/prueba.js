@@ -58,6 +58,8 @@ var pruebaJuego = {
 
       result = sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y;
       console.log(result);
+      var posFinalX = sprite.x;
+      var posFinalY = sprite.y;
       switch(sprite.key)
       {
         case "imagen0":
@@ -68,6 +70,10 @@ var pruebaJuego = {
           console.log("Posicion Final" + sprite.x + " : " + sprite.y);
           sprite.x = imagen1.x;
           sprite.y = imagen1.y;
+
+          imagen1.x = posImagenInX;
+          imagen1.y = posImagenInY;
+
         }
         else {
           sprite.x = posImagenInX;
@@ -82,6 +88,10 @@ var pruebaJuego = {
           console.log("Posicion Inicial " + sprite.x + " : " + sprite.y);
           sprite.x = imagen0.x;
           sprite.y = imagen0.y;
+
+          imagen0.x = posImagenInX;
+          imagen0.y = posImagenInY;
+
         }
         else {
           sprite.x = posImagenInX;
