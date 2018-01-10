@@ -6,7 +6,6 @@ var posImagenInY;
 var pruebaJuego = {
 
   preload: function () {
-
     game.load.image('imagen0','img/dientes/1.png');
   	game.load.image('imagen1','img/dientes/2.png');
     game.load.image('imagen2','img/dientes/3.png');
@@ -15,11 +14,9 @@ var pruebaJuego = {
     game.load.image('imagen5','img/dientes/6.png');
     game.load.image('imagen6','img/dientes/7.png');
     game.load.image('imagen7','img/dientes/8.png');
-
   },
 
   create: function() {
-
       //game.add.sprite(0, 0, 'grid');
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       group = game.add.group();
@@ -83,9 +80,7 @@ var pruebaJuego = {
       imagen7.input.enableDrag();
       imagen7.events.onDragStart.add(this.onDragStart, this);
       imagen7.events.onDragStop.add(this.onDragStop, this);
-
       //group.onChildInputDown.add(this.onDown, this);
-
   },
 
   onDown: function(sprite, pointer) {
@@ -304,6 +299,61 @@ var pruebaJuego = {
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
         }
+        else if(this.checkOverlap(imagen3, sprite))
+        {
+          console.log("colision y con x");
+          console.log("Posicion Inicial " + posImagenInX + " : " + posImagenInY);
+          console.log("Posicion Inicial " + sprite.x + " : " + sprite.y);
+          sprite.x = imagen3.x;
+          sprite.y = imagen3.y;
+
+          imagen3.x = posImagenInX;
+          imagen3.y = posImagenInY;
+        }
+        else if(this.checkOverlap(imagen4, sprite))
+        {
+          console.log("colision 1 con 0");
+          console.log("Posicion Inicial " + posImagenInX + " : " + posImagenInY);
+          console.log("Posicion Final" + sprite.x + " : " + sprite.y);
+          sprite.x = imagen4.x;
+          sprite.y = imagen4.y;
+
+          imagen4.x = posImagenInX;
+          imagen4.y = posImagenInY;
+        }
+        else if(this.checkOverlap(imagen5, sprite))
+        {
+          console.log("colision 1 con 0");
+          console.log("Posicion Inicial " + posImagenInX + " : " + posImagenInY);
+          console.log("Posicion Final" + sprite.x + " : " + sprite.y);
+          sprite.x = imagen5.x;
+          sprite.y = imagen5.y;
+
+          imagen5.x = posImagenInX;
+          imagen5.y = posImagenInY;
+        }
+        else if(this.checkOverlap(imagen6, sprite))
+        {
+          console.log("colision 1 con 0");
+          console.log("Posicion Inicial " + posImagenInX + " : " + posImagenInY);
+          console.log("Posicion Final" + sprite.x + " : " + sprite.y);
+          sprite.x = imagen6.x;
+          sprite.y = imagen6.y;
+
+          imagen6.x = posImagenInX;
+          imagen6.y = posImagenInY;
+        }
+        else if(this.checkOverlap(imagen7, sprite))
+        {
+          console.log("colision 1 con 0");
+          console.log("Posicion Inicial " + posImagenInX + " : " + posImagenInY);
+          console.log("Posicion Final" + sprite.x + " : " + sprite.y);
+          sprite.x = imagen7.x;
+          sprite.y = imagen7.y;
+
+          imagen7.x = posImagenInX;
+          imagen7.y = posImagenInY;
+        }
         else {
           sprite.x = posImagenInX;
           sprite.y = posImagenInY;
@@ -311,9 +361,21 @@ var pruebaJuego = {
         break;
 
         case "imagen3":
-        {
 
-        }
+        break;
+
+        case "imagen4":
+        break;
+
+        case "imagen5":
+        break;
+
+        case "imagen6":
+        break;
+
+        case "imagen7":
+        break;
+
       }
   },
 
