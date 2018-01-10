@@ -89,8 +89,8 @@ var juego_manos = {
     var nu=0,nu_valido=0;
         for (var i = 0; i < posiciones_imagenes.length; i++) 
         {
-          //console.log('vaa');
-          //console.log(posiciones_imagenes[i]);
+          console.log('vaa');
+          console.log(posiciones_imagenes[i]);
           if(posiciones_imagenes[i]!=numero)
           {
             //console.log('diferente');
@@ -102,7 +102,7 @@ var juego_manos = {
             
             nu_valido=nu;
             nu=0;
-            return nu_valido;
+            //return nu_valido;
           }
           
         }
@@ -113,8 +113,8 @@ var juego_manos = {
   {
     //Aqui pasa al juego
     console.log('Pulsado');
-    //this.changeImages(1);
-    console.log(this.changeImages(1));
+    this.changeImages(1);
+    //console.log(this.changeImages(1));
 
     //console.log('Pulsado');
 
