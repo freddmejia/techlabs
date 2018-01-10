@@ -36,8 +36,8 @@ var anterior=0;
 var cont=0;
 var existe=false;
 var aa=[];
-
-var posiciones_imagenes=[];
+var pos1 = 0;
+var pos2 = 0;
 var jugar;
 var juego_manos = {
   preload: function()
@@ -75,7 +75,7 @@ var juego_manos = {
 
       //this.fillImages11(aa[i]);
       //se ingresa los nuevos valores
-      posiciones_imagenes[i]=aa[i];
+      //posiciones_imagenes[i]=aa[i];
       this.fillImages11(aa[i]);
     }
 
@@ -84,14 +84,15 @@ var juego_manos = {
       jugar.height = 100;
 
   },
-  changeImages: function(numero)
+
+  getPosition: function(numero)
   {
-    var nu=0,nu_valido=0;
-        for (var i = 0; i < posiciones_imagenes.length; i++) 
+        var nu=0,nu_valido=0;
+        for (var i = 0; i < aa.length; i++)
         {
-          console.log('vaa');
-          console.log(posiciones_imagenes[i]);
-          if(posiciones_imagenes[i]!=numero)
+          //console.log('vaa');
+          //console.log(aa[i]);
+          if(aa[i]!=numero)
           {
             //console.log('diferente');
             //console.log(posiciones_imagenes[i]);
@@ -99,28 +100,66 @@ var juego_manos = {
           }
           else
           {
-            
             nu_valido=nu;
             nu=0;
-            //return nu_valido;
+            return nu_valido;
           }
-          
+
         }
-        
+
     //return nu_valido;
   },
-    evaluar: function()
+
+  barrido: function()
+  {
+    for (var i = 0; i < aa.length; i++)
+    {
+      console.log('vaa');
+      console.log(aa[i]);
+    }
+  },
+
+  evaluar: function()
   {
     //Aqui pasa al juego
     console.log('Pulsado');
-    this.changeImages(1);
+    //this.getPosition(1);
+    this.barrido();
+    var style = { font: "30px Arial", fill: "#ffffff", align: "center" };
+    //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
+    if(juego_manos.verificarImagenes())
+    {
+      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
+    }
+    else {
+      var text = game.add.text(game.world.centerX - 250, game.world.centerY + 350, "VUELVE A INTENTARLO!!!", style);
+    }
     //console.log(this.changeImages(1));
 
     //console.log('Pulsado');
 
-  //  console.log(group.length);
+    //console.log(group.length);
     //se agrega el evaluar
 
+  },
+
+  verificarImagenes: function()
+  {
+    for(var i = 0; i < aa.length; i++)
+    {
+      if(aa[i] != i)
+      {
+        return false;
+      }
+    }
+    return true;
+  },
+
+  changePosition: function(pos1, pos2, img1, img2)
+  {
+      aa[pos1] = img2;
+      aa[pos2] = img1;
+      this.barrido();
   },
   getRandomArray: function(min,max){
      A= [];
@@ -130,7 +169,7 @@ var juego_manos = {
   },
 
   fillImages11:function(i)
-  { 
+  {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       group = game.add.group();
 
@@ -144,17 +183,17 @@ var juego_manos = {
         xx=980;
         yy=384;
       }
-      
+
       /*cn = game.add.sprite(xx, yy, cn);
       cn.inputEnabled = true;
       cn.input.enableDrag();
       cn.width = 200;
       cn.height = 280;*/
 
-       switch (i) 
+       switch (i)
        {
         case 0:
-        console.log('entro0'); 
+        console.log('entro0');
         console.log(contador);
           //posiciones_imagenes[0]=contador;
           imagen0 = group.create(xx, yy, cn,contador);
@@ -233,7 +272,7 @@ var juego_manos = {
 
       xx=xx-300;
 
-      
+
      /* this.game.physics.startSystem(Phaser.Physics.ARCADE);
       group = game.add.group();
 
@@ -359,7 +398,7 @@ var juego_manos = {
       {
         //VALIDACION IMAGEN 2
         case "imagen0":
-        
+
         //IMAGEN 1
         if(this.checkOverlap(imagen1, sprite))
         {
@@ -371,6 +410,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 1);
 
         }
         //IMAGEN 3
@@ -385,6 +431,13 @@ var juego_manos = {
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 3);
+
         }
         //IMAGEN 2
         else if(this.checkOverlap(imagen2, sprite))
@@ -397,6 +450,13 @@ var juego_manos = {
 
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 2);
 
         }
 
@@ -412,6 +472,13 @@ var juego_manos = {
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 4);
+
         }
 
         //IMAGEN 5
@@ -426,6 +493,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 5);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -438,6 +512,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 6);
 
         }
         //IMAGEN 7
@@ -452,9 +533,14 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(0);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 0, 7);
         }
 
-                        
         else {
           console.log("regreso");
           sprite.x = posImagenInX;
@@ -476,6 +562,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 0);
+
         }
         //IMAGEN 2
         else if(this.checkOverlap(imagen2, sprite))
@@ -489,6 +582,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 2);
+
         }
         //IMAGEN 3
         else if(this.checkOverlap(imagen3, sprite))
@@ -501,6 +601,13 @@ var juego_manos = {
 
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 3);
 
         }
 
@@ -516,6 +623,13 @@ var juego_manos = {
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 4);
+
         }
 
         //IMAGEN 5
@@ -530,6 +644,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 5);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -542,6 +663,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 6);
 
         }
         //IMAGEN 7
@@ -556,13 +684,20 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(1);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 1, 7);
+
         }
         else {
           sprite.x = posImagenInX;
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
 
         case "imagen2":
         //IMAGEN 0
@@ -577,6 +712,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -590,6 +732,13 @@ var juego_manos = {
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 1);
+
         }
         //IMAGEN 3
         else if(this.checkOverlap(imagen3, sprite))
@@ -602,6 +751,13 @@ var juego_manos = {
 
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 3);
 
         }
 
@@ -617,6 +773,13 @@ var juego_manos = {
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 4);
+
         }
 
         //IMAGEN 5
@@ -631,6 +794,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 5);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -644,6 +814,13 @@ var juego_manos = {
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 6);
+
         }
         //IMAGEN 7
         else if(this.checkOverlap(imagen7, sprite))
@@ -656,6 +833,13 @@ var juego_manos = {
 
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(2);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 2, 7);
 
         }
         else {
@@ -678,6 +862,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -690,6 +881,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 1);
 
         }
 
@@ -705,6 +903,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 2);
+
         }
 
         //IMAGEN 4
@@ -718,6 +923,13 @@ var juego_manos = {
 
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 4);
 
         }
 
@@ -733,6 +945,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 5);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -745,6 +964,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 6);
 
         }
         //IMAGEN 7
@@ -759,6 +985,13 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(3);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 3, 7);
+
         }
 
         else {
@@ -766,7 +999,7 @@ var juego_manos = {
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
 
 
         case "imagen4":
@@ -782,6 +1015,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -794,6 +1034,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 1);
 
         }
 
@@ -809,6 +1056,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 2);
+
         }
 
         //IMAGEN 4
@@ -822,6 +1076,13 @@ var juego_manos = {
 
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 3);
 
         }
 
@@ -837,6 +1098,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 5);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -849,6 +1117,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 6);
 
         }
         //IMAGEN 7
@@ -863,6 +1138,13 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(4);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 4, 7);
+
         }
 
         else {
@@ -870,7 +1152,7 @@ var juego_manos = {
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
 
 
         case "imagen5":
@@ -886,6 +1168,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -898,6 +1187,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 1);
 
         }
 
@@ -913,6 +1209,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 2);
+
         }
 
         //IMAGEN 4
@@ -926,6 +1229,13 @@ var juego_manos = {
 
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 4);
 
         }
 
@@ -941,6 +1251,13 @@ var juego_manos = {
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 3);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -953,6 +1270,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 6);
 
         }
         //IMAGEN 7
@@ -967,6 +1291,13 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(5);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 5, 7);
+
         }
 
         else {
@@ -974,7 +1305,7 @@ var juego_manos = {
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
 
         case "imagen6":
         //IMAGEN 0
@@ -989,6 +1320,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -1001,6 +1339,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 1);
 
         }
 
@@ -1016,6 +1361,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 2);
+
         }
 
         //IMAGEN 4
@@ -1029,6 +1381,13 @@ var juego_manos = {
 
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 4);
 
         }
 
@@ -1044,6 +1403,13 @@ var juego_manos = {
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 3);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen5, sprite))
@@ -1056,6 +1422,13 @@ var juego_manos = {
 
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 5);
 
         }
         //IMAGEN 7
@@ -1070,6 +1443,13 @@ var juego_manos = {
           imagen7.x = posImagenInX;
           imagen7.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(6);
+          pos2 = juego_manos.getPosition(7);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 6, 7);
+
         }
 
         else {
@@ -1077,7 +1457,7 @@ var juego_manos = {
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
 
         case "imagen7":
         //IMAGEN 0
@@ -1092,6 +1472,13 @@ var juego_manos = {
           imagen0.x = posImagenInX;
           imagen0.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(0);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 0);
+
         }
         //IMAGEN 1
         else if(this.checkOverlap(imagen1, sprite))
@@ -1104,6 +1491,13 @@ var juego_manos = {
 
           imagen1.x = posImagenInX;
           imagen1.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(1);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 1);
 
         }
 
@@ -1119,6 +1513,13 @@ var juego_manos = {
           imagen2.x = posImagenInX;
           imagen2.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(2);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 2);
+
         }
 
         //IMAGEN 4
@@ -1132,6 +1533,13 @@ var juego_manos = {
 
           imagen4.x = posImagenInX;
           imagen4.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(4);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 4);
 
         }
 
@@ -1147,6 +1555,13 @@ var juego_manos = {
           imagen3.x = posImagenInX;
           imagen3.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(3);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 3);
+
         }
         //IMAGEN 6
         else if(this.checkOverlap(imagen6, sprite))
@@ -1159,6 +1574,13 @@ var juego_manos = {
 
           imagen6.x = posImagenInX;
           imagen6.y = posImagenInY;
+
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(6);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 6);
 
         }
         //IMAGEN 7
@@ -1173,6 +1595,13 @@ var juego_manos = {
           imagen5.x = posImagenInX;
           imagen5.y = posImagenInY;
 
+          pos1 = juego_manos.getPosition(7);
+          pos2 = juego_manos.getPosition(5);
+          console.log(pos1);
+          console.log(pos2);
+
+          this.changePosition(pos1, pos2, 7, 5);
+
         }
 
         else {
@@ -1180,7 +1609,7 @@ var juego_manos = {
           sprite.y = posImagenInY;
         }
 
-        break; 
+        break;
       }
   },
 
