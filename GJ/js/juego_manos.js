@@ -36,6 +36,8 @@ var anterior=0;
 var cont=0;
 var existe=false;
 var aa=[];
+
+var posiciones_imagenes=[];
 var jugar;
 var juego_manos = {
   preload: function()
@@ -72,6 +74,8 @@ var juego_manos = {
     for (var i = 0; i < aa.length; i++) {
 
       //this.fillImages11(aa[i]);
+      //se ingresa los nuevos valores
+      posiciones_imagenes[i]=aa[i];
       this.fillImages11(aa[i]);
     }
 
@@ -80,19 +84,51 @@ var juego_manos = {
       jugar.height = 100;
 
   },
+  changeImages: function(numero)
+  {
+    var nu=0,nu_valido=0;
+        for (var i = 0; i < posiciones_imagenes.length; i++) 
+        {
+          //console.log('vaa');
+          //console.log(posiciones_imagenes[i]);
+          if(posiciones_imagenes[i]!=numero)
+          {
+            //console.log('diferente');
+            //console.log(posiciones_imagenes[i]);
+            nu=nu+1;
+          }
+          else
+          {
+            
+            nu_valido=nu;
+            nu=0;
+            return nu_valido;
+          }
+          
+        }
+        
+    //return nu_valido;
+  },
+    evaluar: function()
+  {
+    //Aqui pasa al juego
+    console.log('Pulsado');
+    //this.changeImages(1);
+    console.log(this.changeImages(1));
+
+    //console.log('Pulsado');
+
+  //  console.log(group.length);
+    //se agrega el evaluar
+
+  },
   getRandomArray: function(min,max){
      A= [];
     while(max>= min) A.push(max--)
     A.sort(function(){return .5- Math.random()});
     return A;
   },
-  evaluar: function()
-  {
-    //Aqui pasa al juego
-    console.log('Pulsado');
-    //se agrega el evaluar
 
-  },
   fillImages11:function(i)
   { 
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -118,7 +154,9 @@ var juego_manos = {
        switch (i) 
        {
         case 0:
-        console.log('entro0');          
+        console.log('entro0'); 
+        console.log(contador);
+          //posiciones_imagenes[0]=contador;
           imagen0 = group.create(xx, yy, cn,contador);
           imagen0.inputEnabled = true;
           imagen0.input.enableDrag();
@@ -126,7 +164,9 @@ var juego_manos = {
           imagen0.events.onDragStop.add(this.onDragStop, this);
           break;
         case 1:
+        console.log(contador);
         console.log('entro1');
+        //posiciones_imagenes[1]=contador;
           imagen1 = group.create(xx, yy, cn,contador);
           imagen1.inputEnabled = true;
           imagen1.input.enableDrag();
@@ -135,6 +175,7 @@ var juego_manos = {
           break;
         case 2:
         console.log('entro2');
+        //posiciones_imagenes[2]=contador;
           imagen2 = group.create(xx, yy, cn,contador);
           imagen2.inputEnabled = true;
           imagen2.input.enableDrag();
@@ -143,6 +184,7 @@ var juego_manos = {
           break;
         case 3:
         console.log('entro3');
+        //posiciones_imagenes[3]=contador;
           imagen3 = group.create(xx, yy, cn,contador);
           imagen3.inputEnabled = true;
           imagen3.input.enableDrag();
@@ -151,6 +193,7 @@ var juego_manos = {
           break;
         case 4:
         console.log('entro4');
+        //posiciones_imagenes[4]=contador;
           imagen4 = group.create(xx, yy, cn,contador);
           imagen4.inputEnabled = true;
           imagen4.input.enableDrag();
@@ -159,6 +202,7 @@ var juego_manos = {
           break;
         case 5:
         console.log('entro5');
+        //posiciones_imagenes[5]=contador;
           imagen5 = group.create(xx, yy, cn,contador);
           imagen5.inputEnabled = true;
           imagen5.input.enableDrag();
@@ -167,6 +211,7 @@ var juego_manos = {
           break;
         case 6:
         console.log('entro6');
+        //posiciones_imagenes[6]=contador;
           imagen6 = group.create(xx, yy, cn,contador);
           imagen6.inputEnabled = true;
           imagen6.input.enableDrag();
@@ -175,6 +220,7 @@ var juego_manos = {
           break;
         case 7:
         console.log('entro7');
+        //posiciones_imagenes[7]=contador;
           imagen7 = group.create(xx, yy, cn,contador);
           imagen7.inputEnabled = true;
           imagen7.input.enableDrag();
