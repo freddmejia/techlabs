@@ -24,8 +24,10 @@ var emitter;
 var n=0;
 var cn="";
 var contador=0;
+var contador1=0;
 var xx=80;//default 980
 var yy=84;//default 84
+var       valor_division = 0;
 
 var ancho=0;
 var largo=0;
@@ -214,14 +216,16 @@ var juego_manos = {
       cn.input.enableDrag();
       cn.width = 200;
       cn.height = 280;*/
-
+      valor_division = window.screen.width / 8;
+    valor_division=(valor_division * contador1), 100
+  contador1=contador1+1;
        switch (i)
        {
         case 0:
         console.log('entro0');
         console.log(contador);
           //posiciones_imagenes[0]=contador;
-          imagen0 = group.create(xx, yy, cn,0);
+          imagen0 = group.create(valor_division,100, cn,0);
           imagen0.inputEnabled = true;
           imagen0.input.enableDrag();
           imagen0.events.onDragStart.add(this.onDragStart, this);
@@ -231,7 +235,7 @@ var juego_manos = {
         console.log(contador);
         console.log('entro1');
         //posiciones_imagenes[1]=contador;
-          imagen1 = group.create(xx, yy, cn,1);
+          imagen1 = group.create(valor_division,100, cn,1);
           imagen1.inputEnabled = true;
           imagen1.input.enableDrag();
           imagen1.events.onDragStart.add(this.onDragStart, this);
@@ -240,7 +244,7 @@ var juego_manos = {
         case 2:
         console.log('entro2');
         //posiciones_imagenes[2]=contador;
-          imagen2 = group.create(xx, yy, cn,2);
+          imagen2 = group.create(valor_division,100, cn,2);
           imagen2.inputEnabled = true;
           imagen2.input.enableDrag();
           imagen2.events.onDragStart.add(this.onDragStart, this);
@@ -249,7 +253,7 @@ var juego_manos = {
         case 3:
         console.log('entro3');
         //posiciones_imagenes[3]=contador;
-          imagen3 = group.create(xx, yy, cn,3);
+          imagen3 = group.create(valor_division,100, cn,3);
           imagen3.inputEnabled = true;
           imagen3.input.enableDrag();
           imagen3.events.onDragStart.add(this.onDragStart, this);
@@ -258,7 +262,7 @@ var juego_manos = {
         case 4:
         console.log('entro4');
         //posiciones_imagenes[4]=contador;
-          imagen4 = group.create(xx, yy, cn,4);
+          imagen4 = group.create(valor_division,100, cn,4);
           imagen4.inputEnabled = true;
           imagen4.input.enableDrag();
           imagen4.events.onDragStart.add(this.onDragStart, this);
@@ -267,7 +271,7 @@ var juego_manos = {
         case 5:
         console.log('entro5');
         //posiciones_imagenes[5]=contador;
-          imagen5 = group.create(xx, yy, cn,5);
+          imagen5 = group.create(valor_division,100, cn,5);
           imagen5.inputEnabled = true;
           imagen5.input.enableDrag();
           imagen5.events.onDragStart.add(this.onDragStart, this);
@@ -276,7 +280,7 @@ var juego_manos = {
         case 6:
         console.log('entro6');
         //posiciones_imagenes[6]=contador;
-          imagen6 = group.create(xx, yy, cn,6);
+          imagen6 = group.create(valor_division,100, cn,6);
           imagen6.inputEnabled = true;
           imagen6.input.enableDrag();
           imagen6.events.onDragStart.add(this.onDragStart, this);
@@ -285,7 +289,7 @@ var juego_manos = {
         case 7:
         console.log('entro7');
         //posiciones_imagenes[7]=contador;
-          imagen7 = group.create(xx, yy, cn,7);
+          imagen7 = group.create(valor_division,100, cn,7);
           imagen7.inputEnabled = true;
           imagen7.input.enableDrag();
           imagen7.events.onDragStart.add(this.onDragStart, this);
