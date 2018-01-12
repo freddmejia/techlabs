@@ -6,18 +6,32 @@ var posImagenInY;
 var pruebaJuego = {
 
   preload: function () {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+    game.scale.setScreenSize(true);
+    game.load.image('fondo','img/fondo.jpg');
+    game.load.image('derecha', 'img/derecha.png');
+    game.load.image('izquierda', 'img/izquierda.png');
     game.load.image('imagen0','img/dientes/1.png');
-  	game.load.image('imagen1','img/dientes/2.png');
+    game.load.image('imagen1','img/dientes/2.png');
     game.load.image('imagen2','img/dientes/3.png');
     game.load.image('imagen3','img/dientes/4.png');
     game.load.image('imagen4','img/dientes/5.png');
     game.load.image('imagen5','img/dientes/6.png');
     game.load.image('imagen6','img/dientes/7.png');
     game.load.image('imagen7','img/dientes/8.png');
+
+    //cargar la imagen
+    group=game.add.group();
+    group.enableBody = true;
   },
 
   create: function() {
       //game.add.sprite(0, 0, 'grid');
+      fondo=game.add.sprite(0,0,'fondo');
+    fondo.width = screen.width;
+    fondo.height =  screen.height;
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       group = game.add.group();
 
@@ -28,59 +42,59 @@ var pruebaJuego = {
 
       //  Enable input and allow for dragging
       imagen0.inputEnabled = true;
-      imagen0.input.enableDrag();
+      /*imagen0.input.enableDrag();
       imagen0.events.onDragStart.add(this.onDragStart, this);
-      imagen0.events.onDragStop.add(this.onDragStop, this);
+      imagen0.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen1 = group.create((valor_division * 1), 100, 'imagen1',2);
 
       imagen1.inputEnabled = true;
-      imagen1.input.enableDrag();
+      /*imagen1.input.enableDrag();
       imagen1.events.onDragStart.add(this.onDragStart, this);
-      imagen1.events.onDragStop.add(this.onDragStop, this);
+      imagen1.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen2 = group.create((valor_division * 2), 100, 'imagen2',3);
 
       imagen2.inputEnabled = true;
-      imagen2.input.enableDrag();
+      /*imagen2.input.enableDrag();
       imagen2.events.onDragStart.add(this.onDragStart, this);
-      imagen2.events.onDragStop.add(this.onDragStop, this);
+      imagen2.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen3 = group.create((valor_division * 3), 100, 'imagen3',4);
 
       imagen3.inputEnabled = true;
-      imagen3.input.enableDrag();
+      /*imagen3.input.enableDrag();
       imagen3.events.onDragStart.add(this.onDragStart, this);
-      imagen3.events.onDragStop.add(this.onDragStop, this);
+      imagen3.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen4 = group.create((valor_division * 4), 100, 'imagen4',5);
 
       imagen4.inputEnabled = true;
-      imagen4.input.enableDrag();
+      /*imagen4.input.enableDrag();
       imagen4.events.onDragStart.add(this.onDragStart, this);
-      imagen4.events.onDragStop.add(this.onDragStop, this);
+      imagen4.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen5 = group.create((valor_division * 5), 100, 'imagen5',6);
 
       imagen5.inputEnabled = true;
-      imagen5.input.enableDrag();
+      /*imagen5.input.enableDrag();
       imagen5.events.onDragStart.add(this.onDragStart, this);
-      imagen5.events.onDragStop.add(this.onDragStop, this);
+      imagen5.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen6 = group.create((valor_division * 6), 100, 'imagen6',7);
 
       imagen6.inputEnabled = true;
-      imagen6.input.enableDrag();
+      /*imagen6.input.enableDrag();
       imagen6.events.onDragStart.add(this.onDragStart, this);
-      imagen6.events.onDragStop.add(this.onDragStop, this);
+      imagen6.events.onDragStop.add(this.onDragStop, this);*/
 
       imagen7 = group.create((valor_division * 7), 100, 'imagen7',8);
 
       imagen7.inputEnabled = true;
-      imagen7.input.enableDrag();
+      /*imagen7.input.enableDrag();
       imagen7.events.onDragStart.add(this.onDragStart, this);
       imagen7.events.onDragStop.add(this.onDragStop, this);
-      //group.onChildInputDown.add(this.onDown, this);
+      //group.onChildInputDown.add(this.onDown, this);*/
   },
 
   onDown: function(sprite, pointer) {

@@ -18,6 +18,7 @@ var group;
 var con=0;
 var text=0;
 var timer=0;
+var valor_division=0;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [];
@@ -53,33 +54,35 @@ var nivel_lavar_manos = {
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
     console.log('create');
-      console.log(game.world.centerX - 600);
-      imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen0');
-      imagen0.width = 200;
-      imagen0.height = 280;
-      imagen1= game.add.sprite(game.world.centerX - 300, game.world.centerY - 300, 'imagen1');
-      imagen1.width = 200;
-      imagen1.height = 280;
-      imagen2= game.add.sprite(game.world.centerX, game.world.centerY - 300, 'imagen2');
-      imagen2.width = 200;
-      imagen2.height = 280;
-      imagen3= game.add.sprite(game.world.centerX + 300, game.world.centerY - 300, 'imagen3');
-      imagen3.width = 200;
-      imagen3.height = 280;
+      //console.log(game.world.centerX - 600);
+      valor_division = window.screen.width / 8;
+
+      imagen0= game.add.sprite((valor_division * 0), 100, 'imagen0');
+      //imagen0.width = 200;
+      //imagen0.height = 280;
+      imagen1= game.add.sprite((valor_division * 1), 100, 'imagen1');
+      //imagen1.width = 200;
+      //imagen1.height = 280;
+      imagen2= game.add.sprite((valor_division * 2), 100, 'imagen2');
+      //imagen2.width = 200;
+      //imagen2.height = 280;
+      imagen3= game.add.sprite((valor_division * 3), 100, 'imagen3');
+      //imagen3.width = 200;
+      //imagen3.height = 280;
 
       //---------------------------------------------------------------------------------------
-      imagen4= game.add.sprite(game.world.centerX - 600, game.world.centerY,  'imagen4');
-      imagen4.width = 200;
-      imagen4.height = 280;
-      imagen5= game.add.sprite(game.world.centerX - 300, game.world.centerY,  'imagen5');
-      imagen5.width = 200;
-      imagen5.height = 280;
-      imagen6= game.add.sprite(game.world.centerX, game.world.centerY,  'imagen6');
-      imagen6.width = 200;
-      imagen6.height = 280;
-      imagen7= game.add.sprite(game.world.centerX + 300, game.world.centerY,  'imagen7');
-      imagen7.width = 200;
-      imagen7.height = 280;
+      imagen4= game.add.sprite((valor_division * 4), 100,  'imagen4');
+      //imagen4.width = 200;
+      //imagen4.height = 280;
+      imagen5= game.add.sprite((valor_division * 5), 100,  'imagen5');
+      //imagen5.width = 200;
+      //imagen5.height = 280;
+      imagen6= game.add.sprite((valor_division * 6), 100,  'imagen6');
+      //imagen6.width = 200;
+      //imagen6.height = 280;
+      imagen7= game.add.sprite((valor_division * 7), 100,  'imagen7');
+      //imagen7.width = 200;
+      //imagen7.height = 280;
 
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
       game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
