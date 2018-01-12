@@ -1643,7 +1643,7 @@ var juego_manos = {
   },
 
   render: function() {
-      var result = 'Drag a sprite';
+      var result = 'Juega';
       game.debug.text(result, 10, 20);
 
   },
