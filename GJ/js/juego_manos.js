@@ -24,8 +24,9 @@ var emitter;
 var n=0;
 var cn="";
 var contador=0;
-var xx=980;
-var yy=84;
+var xx=80;//default 980
+var yy=84;//default 84
+
 var ancho=0;
 var largo=0;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
@@ -42,6 +43,9 @@ var jugar;
 var juego_manos = {
   preload: function()
   {
+    game.load.bitmapFont('desyrel', 'assets/fonts/bitmapFonts/desyrel.png', 'assets/fonts/bitmapFonts/desyrel.xml');
+    game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
+
     console.log('clase nueva');
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -112,9 +116,10 @@ var juego_manos = {
 
   barrido: function()
   {
+    console.log('valores');
     for (var i = 0; i < aa.length; i++)
     {
-      console.log('vaa');
+      
       console.log(aa[i]);
     }
   },
@@ -122,17 +127,33 @@ var juego_manos = {
   evaluar: function()
   {
     //Aqui pasa al juego
-    console.log('Pulsado');
+    //console.log('Pulsado');
     //this.getPosition(1);
     this.barrido();
-    var style = { font: "30px Arial", fill: "#ffffff", align: "center" };
+    var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
     //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
     if(juego_manos.verificarImagenes())
     {
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
+   // game.add.bitmapText(32, 32, 'shortStack', 'This font was generated using the\nfree Littera web site\n\nhttp://kvazars.com/littera/', 32);
+
+    //var text = game.add.bitmapText(game.world.centerY - 250 , game.world.centerY + 250, 'desyrel', 'FELICIDADES HAS GANADO!!!', 64);
+    //text.anchor.x = 0.5;
+    text.anchor.y = 0.5;
     }
     else {
-      var text = game.add.text(game.world.centerX - 250, game.world.centerY + 350, "VUELVE A INTENTARLO!!!", style);
+      //sacar el numero de aciertos y redireccionar al escenario
+    //game.add.bitmapText(32, 32, 'shortStack', 'This font was generated using the\nfree Littera web site\n\nhttp://kvazars.com/littera/', 32);
+
+   /* var text = game.add.bitmapText(game.world.centerY - 250 , game.world.centerY + 250, 'desyrel', 'VUELVE A INTENTARLO!!!', 64);
+    text.anchor.x = 0.5;
+    text.anchor.y = 0.5;  */
+      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "VUELVE A INTENTARLO!!!", style);
+     
+
+      
+
+
     }
     //console.log(this.changeImages(1));
 
@@ -145,8 +166,10 @@ var juego_manos = {
 
   verificarImagenes: function()
   {
+    //console.log('verificarImagenes validando...');
     for(var i = 0; i < aa.length; i++)
     {
+      console.log(aa[i]);
       if(aa[i] != i)
       {
         return false;
@@ -178,9 +201,11 @@ var juego_manos = {
       cn="imagen"+i;
       contador=contador+1;
       console.log(cn);
+      console.log(xx);
+      console.log(yy);
       if(contador==5)
       {
-        xx=980;
+        xx=80;
         yy=384;
       }
 
@@ -196,7 +221,7 @@ var juego_manos = {
         console.log('entro0');
         console.log(contador);
           //posiciones_imagenes[0]=contador;
-          imagen0 = group.create(xx, yy, cn,contador);
+          imagen0 = group.create(xx, yy, cn,0);
           imagen0.inputEnabled = true;
           imagen0.input.enableDrag();
           imagen0.events.onDragStart.add(this.onDragStart, this);
@@ -206,7 +231,7 @@ var juego_manos = {
         console.log(contador);
         console.log('entro1');
         //posiciones_imagenes[1]=contador;
-          imagen1 = group.create(xx, yy, cn,contador);
+          imagen1 = group.create(xx, yy, cn,1);
           imagen1.inputEnabled = true;
           imagen1.input.enableDrag();
           imagen1.events.onDragStart.add(this.onDragStart, this);
@@ -215,7 +240,7 @@ var juego_manos = {
         case 2:
         console.log('entro2');
         //posiciones_imagenes[2]=contador;
-          imagen2 = group.create(xx, yy, cn,contador);
+          imagen2 = group.create(xx, yy, cn,2);
           imagen2.inputEnabled = true;
           imagen2.input.enableDrag();
           imagen2.events.onDragStart.add(this.onDragStart, this);
@@ -224,7 +249,7 @@ var juego_manos = {
         case 3:
         console.log('entro3');
         //posiciones_imagenes[3]=contador;
-          imagen3 = group.create(xx, yy, cn,contador);
+          imagen3 = group.create(xx, yy, cn,3);
           imagen3.inputEnabled = true;
           imagen3.input.enableDrag();
           imagen3.events.onDragStart.add(this.onDragStart, this);
@@ -233,7 +258,7 @@ var juego_manos = {
         case 4:
         console.log('entro4');
         //posiciones_imagenes[4]=contador;
-          imagen4 = group.create(xx, yy, cn,contador);
+          imagen4 = group.create(xx, yy, cn,4);
           imagen4.inputEnabled = true;
           imagen4.input.enableDrag();
           imagen4.events.onDragStart.add(this.onDragStart, this);
@@ -242,7 +267,7 @@ var juego_manos = {
         case 5:
         console.log('entro5');
         //posiciones_imagenes[5]=contador;
-          imagen5 = group.create(xx, yy, cn,contador);
+          imagen5 = group.create(xx, yy, cn,5);
           imagen5.inputEnabled = true;
           imagen5.input.enableDrag();
           imagen5.events.onDragStart.add(this.onDragStart, this);
@@ -251,7 +276,7 @@ var juego_manos = {
         case 6:
         console.log('entro6');
         //posiciones_imagenes[6]=contador;
-          imagen6 = group.create(xx, yy, cn,contador);
+          imagen6 = group.create(xx, yy, cn,6);
           imagen6.inputEnabled = true;
           imagen6.input.enableDrag();
           imagen6.events.onDragStart.add(this.onDragStart, this);
@@ -260,7 +285,7 @@ var juego_manos = {
         case 7:
         console.log('entro7');
         //posiciones_imagenes[7]=contador;
-          imagen7 = group.create(xx, yy, cn,contador);
+          imagen7 = group.create(xx, yy, cn,7);
           imagen7.inputEnabled = true;
           imagen7.input.enableDrag();
           imagen7.events.onDragStart.add(this.onDragStart, this);
@@ -270,7 +295,7 @@ var juego_manos = {
 
       }
 
-      xx=xx-300;
+      xx=xx+300;
 
 
      /* this.game.physics.startSystem(Phaser.Physics.ARCADE);

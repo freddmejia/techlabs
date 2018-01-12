@@ -52,7 +52,8 @@ var nivel_lavar_manos = {
     fondo=game.add.sprite(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
-
+    console.log('create');
+      console.log(game.world.centerX - 600);
       imagen0= game.add.sprite(game.world.centerX - 600, game.world.centerY - 300, 'imagen0');
       imagen0.width = 200;
       imagen0.height = 280;
