@@ -109,7 +109,7 @@ var nivel_lavar_dientes = {
 
 
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 20, this.fadePicture, this);
+      game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
   },
 
@@ -142,8 +142,8 @@ var nivel_lavar_dientes = {
   cambiarVista: function()
   {
 
-    game.state.add('juego_manos', juego_manos);
-    game.state.start('juego_manos');
+    game.state.add('juego_dientes', juego_dientes);
+    game.state.start('juego_dientes');
   },
 
   fillImages: function()
