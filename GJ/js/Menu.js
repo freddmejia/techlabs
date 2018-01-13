@@ -100,7 +100,10 @@ var menu = {
   //Funcion que abre la ventana de niveles
   abrirNiveles: function()
   {
+
     console.log('Vista de Niveles');
+            game.state.add('niveles', niveles);
+      game.state.start('niveles');
   },
 
   //Funcion que abre el ranking de los jugadores

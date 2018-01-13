@@ -14,6 +14,8 @@ var imagen3;
 var imagen4;
 var imagen5;
 var imagen6;
+var imagen7;
+var imagen8;
 var group;
 var con=0;
 var text=0;
@@ -24,7 +26,7 @@ var valor_division=0;
 var posiciones = [];
 var tween;
 
-var nivel_lavar_manos = {
+var nivel_lavar_dientes = {
   preload: function()
   {
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -34,14 +36,15 @@ var nivel_lavar_manos = {
   	game.load.image('fondo','img/fondo.jpg');
   	game.load.image('derecha', 'img/derecha.png');
   	game.load.image('izquierda', 'img/izquierda.png');
-  	game.load.image('imagen0','img/dientes/1.png');
-  	game.load.image('imagen1','img/dientes/2.png');
-  	game.load.image('imagen2','img/dientes/3.png');
-  	game.load.image('imagen3','img/dientes/4.png');
-  	game.load.image('imagen4','img/dientes/5.png');
-  	game.load.image('imagen5','img/dientes/6.png');
-  	game.load.image('imagen6','img/dientes/7.png');
-  	game.load.image('imagen7','img/dientes/8.png');
+  	game.load.image('imagen0','img/manos/1.png');
+  	game.load.image('imagen1','img/manos/2.png');
+  	game.load.image('imagen2','img/manos/3.png');
+  	game.load.image('imagen3','img/manos/4.png');
+  	game.load.image('imagen4','img/manos/5.png');
+  	game.load.image('imagen5','img/manos/6.png');
+  	game.load.image('imagen6','img/manos/7.png');
+  	game.load.image('imagen7','img/manos/8.png');
+   // game.load.image('imagen8','img/manos/9.png');
 
   	//cargar la imagen
   	group=game.add.group();
@@ -60,41 +63,53 @@ var nivel_lavar_manos = {
 
       imagen0= game.add.sprite((valor_division * 0), 100, 'imagen0');
       game.add.text((valor_division * 0), 100, '1', style);
-      imagen0.width = 160;
-      imagen0.height = 250;
+      imagen0.width = 130;
+      imagen0.height = 200;
+
       imagen1= game.add.sprite((valor_division * 1), 100, 'imagen1');
       game.add.text((valor_division * 1), 100, '2', style);
-      imagen1.width = 160;
-      imagen1.height = 250;
+      imagen1.width = 130;
+      imagen1.height = 200;
+
       imagen2= game.add.sprite((valor_division * 2), 100, 'imagen2');
       game.add.text((valor_division * 2), 100, '3', style);
-      imagen2.width = 160;
-      imagen2.height = 250;
+      imagen2.width = 130;
+      imagen2.height = 200;
+
       imagen3= game.add.sprite((valor_division * 3), 100, 'imagen3');
       game.add.text((valor_division * 3), 100, '4', style);
-      imagen3.width = 160;
-      imagen3.height = 250;
+      imagen3.width = 130;
+      imagen3.height = 200;
 
       //---------------------------------------------------------------------------------------
       imagen4= game.add.sprite((valor_division * 4), 100,  'imagen4');
       game.add.text((valor_division * 4), 100, '5', style);
-      imagen4.width = 160;
-      imagen4.height = 250;
+      imagen4.width = 130;
+      imagen4.height = 200;
+
       imagen5= game.add.sprite((valor_division * 5), 100,  'imagen5');
       game.add.text((valor_division * 5), 100, '6', style);
-      imagen5.width = 160;
-      imagen5.height = 250;
+      imagen5.width = 130;
+      imagen5.height = 200;
+
       imagen6= game.add.sprite((valor_division * 6), 100,  'imagen6');
       game.add.text((valor_division * 6), 100, '7', style);
-      imagen6.width = 160;
-      imagen6.height = 250;
+      imagen6.width = 130;
+      imagen6.height = 200;
+
       imagen7= game.add.sprite((valor_division * 7), 100,  'imagen7');
       game.add.text((valor_division * 7), 100, '8', style);
-      imagen7.width = 160;
-      imagen7.height = 250;
+      imagen7.width = 130;
+      imagen7.height = 200;
+
+
+
+
+
+
 
       //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
+      game.time.events.add(Phaser.Timer.SECOND * 20, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
   },
 
@@ -126,6 +141,7 @@ var nivel_lavar_manos = {
 
   cambiarVista: function()
   {
+
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');
   },
@@ -176,6 +192,11 @@ var nivel_lavar_manos = {
           imagen7.width = 200;
           imagen7.height = 280;
           break;
+        case 8:
+          imagen7= game.add.sprite(game.world.centerX + 300, game.world.centerY,  'imagen' + i);
+          imagen7.width = 200;
+          imagen7.height = 280;
+          break;          
         default:
 
       }
