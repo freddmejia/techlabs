@@ -4,7 +4,7 @@ var footer;
 var manos;
 var dientes;
 var levels;
-var star;
+var ducha;
 
 var niveles = {
   preload: function()
@@ -20,6 +20,8 @@ var niveles = {
   	game.load.image('dientes', 'img/dientesN.png');
   	game.load.image('manos', 'img/manosN.png');
     game.load.image('Back', 'img/backHome.png');
+
+    game.load.image('ducha', 'img/duchaN.png');
   	//game.load.image('levels', 'img/levels.png');
   	//game.load.image('star', 'img/starButton.png');
   	//game.load.image('nino', 'img/img_nino.png');
@@ -39,16 +41,26 @@ var niveles = {
       game.add.text(500, 300, 'Lavarse los dientes', style);
       dientes.width = 330;
       dientes.height = 330;
-    
+      
+      ducha = game.add.image( 910,  300, 'ducha');
+      game.add.text(910, 300, 'Asearse', style);
+      ducha.width = 330;
+      ducha.height = 330;
+      
+
       dientes.inputEnabled = true;
       manos.inputEnabled = true;
+      ducha.inputEnabled = true;
       back = game.add.image(game.world.centerX + 500, 20, 'Back');
       back.width = 150;
       back.height = 150;
       back.inputEnabled = true;
+
+
       back.events.onInputDown.add(this.regresar, this);  
       dientes.events.onInputDown.add(this.Dientes, this);
       manos.events.onInputDown.add(this.Manos, this);
+      ducha.events.onInputDown.add(this.Ducha, this);
   },
     regresar: function()
   {
@@ -65,5 +77,10 @@ var niveles = {
     console.log('dientes');
     game.state.add('dientes', nivel_lavar_dientes);
     game.state.start('dientes');
+  },
+    Ducha: function()
+  {
+    game.state.add('ducha', nivel_ducha);
+    game.state.start('ducha');
   },
 }
