@@ -65,6 +65,7 @@ var juego_dientes = {
     game.load.image('imagen6','img/manos/7.png');
     game.load.image('imagen7','img/manos/8.png');
     game.load.image('jugar',  'img/start1.png');
+    game.load.image('Back', 'img/backHome.png');
   },
 
   create: function()
@@ -88,9 +89,17 @@ var juego_dientes = {
       jugar= game.add.button(550, 650, 'jugar', this.evaluar, this, 1,0,2);
       jugar.width = 300;
       jugar.height = 100;
-
+      
+      back = game.add.image(game.world.centerX + 500, 20, 'Back');
+      back.width = 150;
+      back.height = 150;
+      back.inputEnabled = true;
+      back.events.onInputDown.add(this.regresar, this);      
   },
-
+  regresar: function()
+  {
+    game.state.start('niveles');
+  },
   getPosition: function(numero)
   {
         var nu=0,nu_valido=0;
@@ -227,7 +236,7 @@ var juego_dientes = {
         console.log('entro0');
         console.log(contador);
           
-          imagen0 = group.create(valor_division,100, cn,0);
+          imagen0 = group.create(valor_division,200, cn,0);
           imagen0.width = 160;
           imagen0.height = 250;
           imagen0.inputEnabled = true;
@@ -239,7 +248,7 @@ var juego_dientes = {
         console.log(contador);
         console.log('entro1');
         //posiciones_imagenes[1]=contador;
-          imagen1 = group.create(valor_division,100, cn,1);
+          imagen1 = group.create(valor_division,200, cn,1);
           imagen1.width = 160;
           imagen1.height = 250;          
           imagen1.inputEnabled = true;
@@ -250,7 +259,7 @@ var juego_dientes = {
         case 2:
         console.log('entro2');
         //posiciones_imagenes[2]=contador;
-          imagen2 = group.create(valor_division,100, cn,2);
+          imagen2 = group.create(valor_division,200, cn,2);
           imagen2.width = 160;
           imagen2.height = 250;          
           imagen2.inputEnabled = true;
@@ -261,7 +270,7 @@ var juego_dientes = {
         case 3:
         console.log('entro3');
         //posiciones_imagenes[3]=contador;
-          imagen3 = group.create(valor_division,100, cn,3);
+          imagen3 = group.create(valor_division,200, cn,3);
           imagen3.width = 160;
           imagen3.height = 250;          
           imagen3.inputEnabled = true;
@@ -272,7 +281,7 @@ var juego_dientes = {
         case 4:
         console.log('entro4');
         //posiciones_imagenes[4]=contador;
-          imagen4 = group.create(valor_division,100, cn,4);
+          imagen4 = group.create(valor_division,200, cn,4);
           imagen4.width = 160;
           imagen4.height = 250;          
           imagen4.inputEnabled = true;
@@ -283,7 +292,7 @@ var juego_dientes = {
         case 5:
         console.log('entro5');
         //posiciones_imagenes[5]=contador;
-          imagen5 = group.create(valor_division,100, cn,5);
+          imagen5 = group.create(valor_division,200, cn,5);
           imagen5.width = 160;
           imagen5.height = 250;          
           imagen5.inputEnabled = true;
@@ -294,7 +303,7 @@ var juego_dientes = {
         case 6:
         console.log('entro6');
         //posiciones_imagenes[6]=contador;
-          imagen6 = group.create(valor_division,100, cn,6);
+          imagen6 = group.create(valor_division,200, cn,6);
           imagen6.width = 160;
           imagen6.height = 250;          
           imagen6.inputEnabled = true;
@@ -305,7 +314,7 @@ var juego_dientes = {
         case 7:
         console.log('entro7');
         //posiciones_imagenes[7]=contador;
-          imagen7 = group.create(valor_division,100, cn,7);
+          imagen7 = group.create(valor_division,200, cn,7);
           imagen7.width = 160;
           imagen7.height = 250;          
           imagen7.inputEnabled = true;

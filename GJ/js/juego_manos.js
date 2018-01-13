@@ -55,7 +55,7 @@ var juego_manos = {
     game.scale.setScreenSize(true);
 
     game.load.image('fondo','img/fondo.jpg');
-
+    
     game.load.image('imagen0','img/dientes/1.png');
     game.load.image('imagen1','img/dientes/2.png');
     game.load.image('imagen2','img/dientes/3.png');
@@ -65,6 +65,7 @@ var juego_manos = {
     game.load.image('imagen6','img/dientes/7.png');
     game.load.image('imagen7','img/dientes/8.png');
     game.load.image('jugar',  'img/start1.png');
+    game.load.image('Back', 'img/backHome.png');
   },
 
   create: function()
@@ -85,12 +86,22 @@ var juego_manos = {
       this.fillImages11(aa[i]);
     }
 
+
+
       jugar= game.add.button(550, 650, 'jugar', this.evaluar, this, 1,0,2);
       jugar.width = 300;
       jugar.height = 100;
 
+      back = game.add.image(game.world.centerX + 500, 20, 'Back');
+      back.width = 150;
+      back.height = 150;
+      back.inputEnabled = true;
+      back.events.onInputDown.add(this.regresar, this);  
   },
-
+  regresar: function()
+  {
+    game.state.start('niveles');
+  },
   getPosition: function(numero)
   {
         var nu=0,nu_valido=0;
@@ -199,7 +210,7 @@ var juego_manos = {
       group = game.add.group();
 
       group.inputEnableChildren = true;
-
+    
       cn="imagen"+i;
       contador=contador+1;
       console.log(cn);
@@ -218,6 +229,7 @@ var juego_manos = {
       cn.height = 280;*/
 
 
+
       valor_division = window.screen.width / 8;
     valor_division=(valor_division * contador1), 100
   contador1=contador1+1;
@@ -227,7 +239,7 @@ var juego_manos = {
         console.log('entro0');
         console.log(contador);
           
-          imagen0 = group.create(valor_division,100, cn,0);
+          imagen0 = group.create(valor_division,200, cn,0);
           imagen0.width = 160;
           imagen0.height = 250;
           imagen0.inputEnabled = true;
@@ -239,7 +251,7 @@ var juego_manos = {
         console.log(contador);
         console.log('entro1');
         //posiciones_imagenes[1]=contador;
-          imagen1 = group.create(valor_division,100, cn,1);
+          imagen1 = group.create(valor_division,200, cn,1);
           imagen1.width = 160;
           imagen1.height = 250;          
           imagen1.inputEnabled = true;
@@ -250,7 +262,7 @@ var juego_manos = {
         case 2:
         console.log('entro2');
         //posiciones_imagenes[2]=contador;
-          imagen2 = group.create(valor_division,100, cn,2);
+          imagen2 = group.create(valor_division,200, cn,2);
           imagen2.width = 160;
           imagen2.height = 250;          
           imagen2.inputEnabled = true;
@@ -261,7 +273,7 @@ var juego_manos = {
         case 3:
         console.log('entro3');
         //posiciones_imagenes[3]=contador;
-          imagen3 = group.create(valor_division,100, cn,3);
+          imagen3 = group.create(valor_division,200, cn,3);
           imagen3.width = 160;
           imagen3.height = 250;          
           imagen3.inputEnabled = true;
@@ -272,7 +284,7 @@ var juego_manos = {
         case 4:
         console.log('entro4');
         //posiciones_imagenes[4]=contador;
-          imagen4 = group.create(valor_division,100, cn,4);
+          imagen4 = group.create(valor_division,200, cn,4);
           imagen4.width = 160;
           imagen4.height = 250;          
           imagen4.inputEnabled = true;
@@ -283,7 +295,7 @@ var juego_manos = {
         case 5:
         console.log('entro5');
         //posiciones_imagenes[5]=contador;
-          imagen5 = group.create(valor_division,100, cn,5);
+          imagen5 = group.create(valor_division,200, cn,5);
           imagen5.width = 160;
           imagen5.height = 250;          
           imagen5.inputEnabled = true;
@@ -294,7 +306,7 @@ var juego_manos = {
         case 6:
         console.log('entro6');
         //posiciones_imagenes[6]=contador;
-          imagen6 = group.create(valor_division,100, cn,6);
+          imagen6 = group.create(valor_division,200, cn,6);
           imagen6.width = 160;
           imagen6.height = 250;          
           imagen6.inputEnabled = true;
@@ -305,7 +317,7 @@ var juego_manos = {
         case 7:
         console.log('entro7');
         //posiciones_imagenes[7]=contador;
-          imagen7 = group.create(valor_division,100, cn,7);
+          imagen7 = group.create(valor_division,200, cn,7);
           imagen7.width = 160;
           imagen7.height = 250;          
           imagen7.inputEnabled = true;

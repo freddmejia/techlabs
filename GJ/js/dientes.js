@@ -44,6 +44,7 @@ var nivel_lavar_dientes = {
   	game.load.image('imagen5','img/manos/6.png');
   	game.load.image('imagen6','img/manos/7.png');
   	game.load.image('imagen7','img/manos/8.png');
+   
    // game.load.image('imagen8','img/manos/9.png');
 
   	//cargar la imagen
@@ -60,49 +61,49 @@ var nivel_lavar_dientes = {
       //console.log(game.world.centerX - 600);
       valor_division = window.screen.width / 8;
       var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
+      
 
-      imagen0= game.add.sprite((valor_division * 0), 100, 'imagen0');
-      game.add.text((valor_division * 0), 100, '1', style);
+
+      imagen0= game.add.sprite((valor_division * 0), 200, 'imagen0');
+      game.add.text((valor_division * 0), 200, '1', style);
       imagen0.width = 130;
       imagen0.height = 200;
 
-      imagen1= game.add.sprite((valor_division * 1), 100, 'imagen1');
-      game.add.text((valor_division * 1), 100, '2', style);
+      imagen1= game.add.sprite((valor_division * 1), 200, 'imagen1');
+      game.add.text((valor_division * 1), 200, '2', style);
       imagen1.width = 130;
       imagen1.height = 200;
 
-      imagen2= game.add.sprite((valor_division * 2), 100, 'imagen2');
-      game.add.text((valor_division * 2), 100, '3', style);
+      imagen2= game.add.sprite((valor_division * 2), 200, 'imagen2');
+      game.add.text((valor_division * 2), 200, '3', style);
       imagen2.width = 130;
       imagen2.height = 200;
 
-      imagen3= game.add.sprite((valor_division * 3), 100, 'imagen3');
-      game.add.text((valor_division * 3), 100, '4', style);
+      imagen3= game.add.sprite((valor_division * 3), 200, 'imagen3');
+      game.add.text((valor_division * 3), 200, '4', style);
       imagen3.width = 130;
       imagen3.height = 200;
 
       //---------------------------------------------------------------------------------------
-      imagen4= game.add.sprite((valor_division * 4), 100,  'imagen4');
-      game.add.text((valor_division * 4), 100, '5', style);
+      imagen4= game.add.sprite((valor_division * 4), 200,  'imagen4');
+      game.add.text((valor_division * 4), 200, '5', style);
       imagen4.width = 130;
       imagen4.height = 200;
 
-      imagen5= game.add.sprite((valor_division * 5), 100,  'imagen5');
-      game.add.text((valor_division * 5), 100, '6', style);
+      imagen5= game.add.sprite((valor_division * 5), 200,  'imagen5');
+      game.add.text((valor_division * 5), 200, '6', style);
       imagen5.width = 130;
       imagen5.height = 200;
 
-      imagen6= game.add.sprite((valor_division * 6), 100,  'imagen6');
-      game.add.text((valor_division * 6), 100, '7', style);
+      imagen6= game.add.sprite((valor_division * 6), 200,  'imagen6');
+      game.add.text((valor_division * 6), 200, '7', style);
       imagen6.width = 130;
       imagen6.height = 200;
 
-      imagen7= game.add.sprite((valor_division * 7), 100,  'imagen7');
-      game.add.text((valor_division * 7), 100, '8', style);
+      imagen7= game.add.sprite((valor_division * 7), 200,  'imagen7');
+      game.add.text((valor_division * 7), 200, '8', style);
       imagen7.width = 130;
       imagen7.height = 200;
-
-
 
 
 
@@ -145,7 +146,10 @@ var nivel_lavar_dientes = {
     game.state.add('juego_dientes', juego_dientes);
     game.state.start('juego_dientes');
   },
-
+  regresar: function()
+  {
+    game.state.start('Menu');
+  },
   fillImages: function()
   {
     for(var i = 0; i > posiciones.length; i++)

@@ -19,6 +19,7 @@ var niveles = {
   	//game.load.spritesheet('botones_inicio', 'img/botones_inicio.png', 550, 350, 3);
   	game.load.image('dientes', 'img/dientesN.png');
   	game.load.image('manos', 'img/manosN.png');
+    game.load.image('Back', 'img/backHome.png');
   	//game.load.image('levels', 'img/levels.png');
   	//game.load.image('star', 'img/starButton.png');
   	//game.load.image('nino', 'img/img_nino.png');
@@ -41,10 +42,19 @@ var niveles = {
     
       dientes.inputEnabled = true;
       manos.inputEnabled = true;
-
+      back = game.add.image(game.world.centerX + 500, 20, 'Back');
+      back.width = 150;
+      back.height = 150;
+      back.inputEnabled = true;
+      back.events.onInputDown.add(this.regresar, this);  
       dientes.events.onInputDown.add(this.Dientes, this);
       manos.events.onInputDown.add(this.Manos, this);
   },
+    regresar: function()
+  {
+    game.state.start('Menu');
+  },
+  
     Dientes: function()
   {
     game.state.add('nivelManos', nivel_lavar_manos);
