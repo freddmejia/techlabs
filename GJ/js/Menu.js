@@ -126,14 +126,14 @@ var menu = {
 
 
     //MANOS
-/*    
+   
     game.state.add('herramientas_lavar_manos', herramientas_lavar_manos);
     game.state.start('herramientas_lavar_manos');
-*/
-    //HERRAMIENTAS DUCHA
 
+    //HERRAMIENTAS DUCHA
+/*
     game.state.add('ducha_primer_nivel', ducha_primer_nivel);
-    game.state.start('ducha_primer_nivel');
+    game.state.start('ducha_primer_nivel');*/
 
 
         /*

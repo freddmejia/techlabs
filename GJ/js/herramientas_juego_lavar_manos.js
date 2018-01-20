@@ -137,7 +137,9 @@ this.barrido();
   },
   regresar: function()
   {
-    game.state.start('niveles');
+    game.state.add('Menu', menu);
+    game.state.start('Menu');
+    //game.state.start('niveles');
   },
   getPosition: function(numero)
   {
