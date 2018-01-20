@@ -120,16 +120,23 @@ var menu = {
   	//Aqui pasa al juego
     console.log('Pulsado');
     //Aqui agrega la fase del juego con lo tuyo de esta manera:
+    //BOCA
+    /*game.state.add('herramientas_lavar_boca', herramientas_lavar_boca);
+    game.state.start('herramientas_lavar_boca');*/
 
-    game.state.add('herramientas_lavar_boca', herramientas_lavar_boca);
-    game.state.start('herramientas_lavar_boca');
 
+    //MANOS
+/*    
+    game.state.add('herramientas_lavar_manos', herramientas_lavar_manos);
+    game.state.start('herramientas_lavar_manos');
+*/
+    //HERRAMIENTAS DUCHA
 
-    /*game.state.add('herramientas_lavar_manos', herramientas_lavar_manos);
-    game.state.start('herramientas_lavar_manos');*/
+    game.state.add('ducha_primer_nivel', ducha_primer_nivel);
+    game.state.start('ducha_primer_nivel');
     
 
-    /*    
+        /*
     game.state.add('nivelManos', nivel_lavar_manos);
     game.state.start('nivelManos');*/
     

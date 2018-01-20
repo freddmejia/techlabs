@@ -48,7 +48,7 @@ var herramientas_lavar_manos = {
       valor_division = window.screen.width / 2;
       var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
       
-      game.add.text(400, 100, 'HERRAMIENTAS PARA LAVAR MANOS', style);
+      game.add.text(400, 100, 'ACCESORIOS PARA LAVAR MANOS', style);
 
       imagen9= game.add.sprite(500, 200, 'imagen9');
       game.add.text(505, 205, '1', style);
