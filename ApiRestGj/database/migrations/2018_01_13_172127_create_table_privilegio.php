@@ -13,15 +13,18 @@ class CreateTablePrivilegio extends Migration
      */
     public function up()
     {
-        Schema::create('privilegio', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('idRol')->unsigned();
-            $table->integer('idUsuario')->unsigned();
-            $table->timestamps();
-
-            $table->foreign('idRol')->references('rol')->on('id');
-            $table->foreign('idUsuario')->references('usuario')->on('id');
-        });
+        if(!Schema::hasTable('privilegio'))
+        {
+            Schema::create('privilegio', function (Blueprint $table) {
+                $table->increments('id');
+                $table->integer('idRol')->unsigned();
+                $table->integer('idUsuario')->unsigned();
+                $table->timestamps();
+    
+                $table->foreign('idRol')->references('rol')->on('id');
+                $table->foreign('idUsuario')->references('usuario')->on('id');
+            });
+        }
     }
 
     /**

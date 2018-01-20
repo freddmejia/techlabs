@@ -20,9 +20,6 @@ class CreateTableUsuario extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('password');
-            $table->integer('copas');
-            $table->integer('estrellas');
-            $table->integer('puntaje');
             $table->boolean('estado');
             $table->timestamps();
             $table->rememberToken();
