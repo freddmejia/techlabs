@@ -18,6 +18,9 @@ class CreateTablePrivilegio extends Migration
             $table->integer('idRol')->unsigned();
             $table->integer('idUsuario')->unsigned();
             $table->timestamps();
+
+            $table->foreign('idRol')->references('rol')->on('id');
+            $table->foreign('idUsuario')->references('usuario')->on('id');
         });
     }
 
