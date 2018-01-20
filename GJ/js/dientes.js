@@ -60,7 +60,7 @@ var nivel_lavar_dientes = {
     console.log('create');
       //console.log(game.world.centerX - 600);
       valor_division = window.screen.width / 8;
-      var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
+      var style = { font: "30px Arial", fill: "#FE0023", align: "center" };
       
 
 
@@ -146,10 +146,7 @@ var nivel_lavar_dientes = {
     game.state.add('juego_dientes', juego_dientes);
     game.state.start('juego_dientes');
   },
-  regresar: function()
-  {
-    game.state.start('Menu');
-  },
+
   fillImages: function()
   {
     for(var i = 0; i > posiciones.length; i++)

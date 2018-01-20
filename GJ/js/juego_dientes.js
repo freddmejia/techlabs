@@ -143,7 +143,7 @@ var juego_dientes = {
     this.barrido();
     var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
     //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-    if(juego_manos.verificarImagenes())
+    if(this.verificarImagenes())
     {
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
    // game.add.bitmapText(32, 32, 'shortStack', 'This font was generated using the\nfree Littera web site\n\nhttp://kvazars.com/littera/', 32);
