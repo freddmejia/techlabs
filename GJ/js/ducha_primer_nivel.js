@@ -56,6 +56,7 @@ var ducha_primer_nivel = {
       var style = { font: "30px Arial", fill: "#FE0023", align: "center" };
       
 
+      game.add.text(400, 100, 'ACCESORIOS PARA DUCHARSE', style);
 
       imagen0= game.add.sprite((valor_division * 2), 200, 'imagen0');
       game.add.text((valor_division * 2), 200, '1', style);

@@ -33,17 +33,17 @@ var niveles = {
     fondo.height =  screen.height;
     var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
       manos = game.add.image(game.world.centerX-600,300, 'manos');
-      game.add.text(game.world.centerX-600, 300, 'Lavarse las manos', style);
+      game.add.text(game.world.centerX-575, 310, 'Lavarse las manos', style);
       manos.width = 330;
       manos.height = 330;
 
       dientes = game.add.image( 500,  300, 'dientes');
-      game.add.text(500, 300, 'Lavarse los dientes', style);
+      game.add.text(530, 315, 'Lavarse los dientes', style);
       dientes.width = 330;
       dientes.height = 330;
       
       ducha = game.add.image( 910,  300, 'ducha');
-      game.add.text(910, 300, 'Asearse', style);
+      game.add.text(1010, 315, 'Asearse', style);
       ducha.width = 330;
       ducha.height = 330;
       
@@ -69,18 +69,18 @@ var niveles = {
   
     Dientes: function()
   {
-    game.state.add('nivelManos', nivel_lavar_manos);
-    game.state.start('nivelManos');
+    game.state.add('herramientas_lavar_boca', herramientas_lavar_boca);
+    game.state.start('herramientas_lavar_boca');
   },
     Manos: function()
   {
     console.log('dientes');
-    game.state.add('dientes', nivel_lavar_dientes);
-    game.state.start('dientes');
+    game.state.add('herramientas_lavar_manos', herramientas_lavar_manos);
+    game.state.start('herramientas_lavar_manos');
   },
     Ducha: function()
   {
-    game.state.add('ducha', nivel_ducha);
-    game.state.start('ducha');
+    game.state.add('ducha_primer_nivel', ducha_primer_nivel);
+    game.state.start('ducha_primer_nivel');
   },
 }
