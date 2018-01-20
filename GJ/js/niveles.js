@@ -75,12 +75,14 @@ var niveles = {
     Manos: function()
   {
     console.log('dientes');
+
+
     game.state.add('herramientas_lavar_manos', herramientas_lavar_manos);
     game.state.start('herramientas_lavar_manos');
   },
     Ducha: function()
   {
-    game.state.add('ducha_primer_nivel', ducha_primer_nivel);
+    game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel);
     game.state.start('ducha_primer_nivel');
   },
 }

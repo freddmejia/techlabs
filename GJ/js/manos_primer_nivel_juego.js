@@ -41,6 +41,46 @@ var manos_primer_nivel_juego = {
  /*   game.load.bitmapFont('desyrel', 'assets/fonts/bitmapFonts/desyrel.png', 'assets/fonts/bitmapFonts/desyrel.xml');
     game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
 */
+
+ fondo;
+ derecha;
+ izquierda;
+ button1;
+ button2;
+ imagen0;
+ imagen1;
+ imagen2;
+ imagen3;
+
+
+ group;
+ con=0;
+ text=0;
+ timer=0;
+ emitter;
+ n=0;
+ cn="";
+ contador1=0;
+ contador11=2;
+ xx=80;//default 980
+ yy=84;//default 84
+       valor_division = 0;
+
+ ancho=0;
+ largo=0;
+//Creo estructura de dato que me permitira guardar las posiciones ya llenadas
+//Primero las creo vacias
+ posiciones1 = [];
+ ran=0;
+ anterior=0;
+ cont=0;
+ existe=false;
+ aaa=[];
+ pos1 = 0;
+ pos2 = 0;
+ jugar;
+
+
     console.log('clase nueva');
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;

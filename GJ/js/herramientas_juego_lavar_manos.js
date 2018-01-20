@@ -21,6 +21,8 @@ var contador=0;
 var contador2=3;
 var xx=80;//default 980
 var yy=84;//default 84
+console.log(xx);
+console.log(yy);
 var       valor_division = 0;
 
 var ancho=0;
@@ -39,6 +41,49 @@ var jugar;
 var herramientas_juego_lavar_manos = {
   preload: function()
   {
+
+
+//Nivel de lavados de Manos
+
+
+ fondo;
+ derecha;
+ izquierda;
+ button1;
+ button2;
+ imagen9;
+ imagen10;
+
+ group;
+ con=0;
+ text=0;
+ timer=0;
+ emitter;
+ n=0;
+ cn="";
+ contador=0;
+ contador2=3;
+ xx=80;//default 980
+ yy=84;//default 84
+console.log(xx);
+console.log(yy);
+       valor_division = 0;
+
+ ancho=0;
+ largo=0;
+//Creo estructura de dato que me permitira guardar las posiciones ya llenadas
+//Primero las creo vacias
+ posiciones = [];
+ ran=0;
+ anterior=0;
+ cont=0;
+ existe=false;
+ aa=[];
+ pos1 = 0;
+ pos2 = 0;
+ jugar;
+
+
   /*  game.load.bitmapFont('desyrel', 'assets/fonts/bitmapFonts/desyrel.png', 'assets/fonts/bitmapFonts/desyrel.xml');
     game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
 */
@@ -223,6 +268,8 @@ this.barrido();
 
 
       valor_division = window.screen.width / 8;
+      console.log('TAMAÑO DE VENTANA');
+      console.log(window.screen.width);
     console.log('val');
 
     console.log(valor_division);

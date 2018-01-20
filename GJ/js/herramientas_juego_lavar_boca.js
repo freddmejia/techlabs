@@ -38,6 +38,43 @@ var herramientas_juego_lavar_boca = {
   /*  game.load.bitmapFont('desyrel', 'assets/fonts/bitmapFonts/desyrel.png', 'assets/fonts/bitmapFonts/desyrel.xml');
     game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
 */
+
+ fondo;
+ derecha;
+ izquierda;
+ button1;
+ button2;
+ imagen9;
+ imagen10;
+
+ group;
+ con=0;
+ text=0;
+ timer=0;
+ emitter;
+ n=0;
+ cn="";
+ contador=0;
+ contador2=3;
+ xx=80;//default 980
+ yy=84;//default 84
+       valor_division = 0;
+
+ ancho=0;
+ largo=0;
+//Creo estructura de dato que me permitira guardar las posiciones ya llenadas
+//Primero las creo vacias
+ posiciones = [];
+ ran=0;
+ anterior=0;
+ cont=0;
+ existe=false;
+ aa=[];
+ pos1 = 0;
+ pos2 = 0;
+ jugar;
+
+
     console.log('clase nueva');
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
@@ -62,7 +99,10 @@ var herramientas_juego_lavar_boca = {
 
     //console.log("random "+Math.floor(Math.random()*3));
     //  console.log("random "+Math.floor(Math.random() * 7));
+    aa=[];
     aa=this.getRandomArray(9, 10);
+        xx=80;
+        yy=84;
     for (var i = 0; i < aa.length; i++) {
 
       //this.fillImages11(aa[i]);
@@ -192,15 +232,17 @@ this.barrido();
     return A;
   },
 
-  fillImages11:function(i)
+  fillImages11:function(ip)
   {
       this.game.physics.startSystem(Phaser.Physics.ARCADE);
       group = game.add.group();
 
       group.inputEnableChildren = true;
     
-      cn="imagen"+i;
+      cn="imagen"+ip;
       contador=contador+1;
+      console.log('VALOR CONTADOR');
+      console.log(contador1);
       console.log(cn);
       console.log(xx);
       console.log(yy);
@@ -228,7 +270,7 @@ this.barrido();
     console.log('valor division');
     console.log(valor_division);
   contador2=contador2+1;
-       switch (i)
+       switch (ip)
        {
         case 9:
         console.log('entro0');

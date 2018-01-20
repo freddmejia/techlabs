@@ -134,7 +134,7 @@ var menu = {
 
     game.state.add('ducha_primer_nivel', ducha_primer_nivel);
     game.state.start('ducha_primer_nivel');
-    
+
 
         /*
     game.state.add('nivelManos', nivel_lavar_manos);

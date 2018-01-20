@@ -89,8 +89,15 @@ var herramientas_lavar_manos = {
 
   cambiarVista: function()
   {
+
+   /* var game = new Phaser.Game(screen.width , screen.height, Phaser.AUTO);
     game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
     game.state.start('herramientas_juego_lavar_manos');
+*/
+
+    game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
+    game.state.start('herramientas_juego_lavar_manos');
+    
     /*    
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');*/

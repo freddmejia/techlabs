@@ -45,6 +45,45 @@ var dientes_segundo_nivel_juego = {
  /*   game.load.bitmapFont('desyrel', 'assets/fonts/bitmapFonts/desyrel.png', 'assets/fonts/bitmapFonts/desyrel.xml');
     game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
 */
+ fondo;
+ derecha;
+ izquierda;
+ button1;
+ button2;
+ imagen4;
+ imagen5;
+ imagen6;
+ imagen7;
+
+
+ group;
+ con=0;
+ text=0;
+ timer=0;
+ emitter;
+ n=0;
+ cn="";
+ contador1_sn=3;
+ contador11_sn=2;
+ xx=80;//default 980
+ yy=84;//default 84
+       valor_division = 0;
+
+ ancho=0;
+ largo=0;
+//Creo estructura de dato que me permitira guardar las posiciones ya llenadas
+//Primero las creo vacias
+ posiciones1 = [];
+ ran=0;
+ anterior=0;
+ cont=0;
+ existe=false;
+ aaa_sn=[];
+ pos1 = 0;
+ pos2 = 0;
+ jugar;
+
+
     console.log('clase nueva');
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
