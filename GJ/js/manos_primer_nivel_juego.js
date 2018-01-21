@@ -129,7 +129,8 @@ var manos_primer_nivel_juego = {
   },
   regresar: function()
   {
-    game.state.start('niveles');
+    game.state.add('niveles', niveles);
+    game.state.start('niveles');    
   },
   getPosition: function(numero)
   {
