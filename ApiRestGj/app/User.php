@@ -17,16 +17,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email',
-    ];
+    protected $table = 'usuario';
+    //Se añaden los atributos que van a tener la tabla
+    protected $fillable = ['nickname', 'password'];
+    //Se añaden los campos que seran ocultos
+    protected $hidden = ['id', 'estado'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
+
+    //Relaciones
+    public function privilegios()
+    {
+        //Devuelve todos los provilegios del usuario
+        return $this->hasMany('App\Privilegio','idUsuario');
+    }
+
+
 }
