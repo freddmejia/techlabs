@@ -20,7 +20,6 @@ class CreateTableRol extends Migration
                 $table->string('nombre');
                 $table->boolean('estado');
                 $table->timestamps();
-                $table->rememberToken();
             });
         }
     }

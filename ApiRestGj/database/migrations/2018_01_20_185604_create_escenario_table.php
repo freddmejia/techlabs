@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableUsuario extends Migration
+class CreateEscenarioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateTableUsuario extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('usuario')) 
-        {
-            Schema::create('usuario', function (Blueprint $table) 
-            {
+        Schema::create('escenario', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nickname')->unique();
-            $table->string('password')->nullable();
+            $table->string('nombre');
             $table->boolean('estado');
             $table->timestamps();
-            $table->rememberToken();
-            });
-        }    
+        });
     }
 
     /**
@@ -34,6 +28,6 @@ class CreateTableUsuario extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('escenario');
     }
 }

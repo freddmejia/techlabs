@@ -17,14 +17,12 @@ class CreateJugadorTable extends Migration
         {
             Schema::create('jugador', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('idPrivilegio')->unsigned();
-                $table->string('nombre');
+                $table->string('nickname');
                 $table->integer('copas');
                 $table->integer('estrellas');
                 $table->boolean('estado');
                 $table->timestamps();
                 $table->rememberToken();
-                $table->foreign('idPrivilegio')->references('privilegio')->on('id');
             });
         }
     }
