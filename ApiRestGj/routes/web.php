@@ -29,10 +29,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('jugador/{nick}', ['uses' => 'JugadorController@getJugador']);
 
     //Agregar un nuevo jugador
-    $router->post('jugador', ['uses' => 'JugadorController@nuevoJugador']);
+    $router->get('jugadorNuevo/{nick}', ['uses' => 'JugadorController@nuevoJugador']);
 
     //Registramos el seguimiento
-    $router->post('seguimiento', ['uses' => 'SeguimientoController@nuevoSeguimiento']);
+    $router->get('seguimiento', ['uses' => 'SeguimientoController@nuevoSeguimiento']);
 
     //Registramos el puntaje del jugador
     $router->put('jugador/{id}/{estrellas}/{copas}', ['uses' => 'JugadorController@registrarPuntaje']);

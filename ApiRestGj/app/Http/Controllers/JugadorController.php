@@ -20,6 +20,15 @@ class JugadorController extends Controller
         return response()->json($jugador);
     }
 
+    //Se crea un nuevo jugador
+    public function nuevoJugador($nick)
+    {
+        $nuevoJugador = Jugador::create(
+            ['nickname' => $nick, 
+            ]
+        );
+    }
+
     
 
 }
