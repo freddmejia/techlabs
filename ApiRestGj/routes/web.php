@@ -16,10 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 
-Route::get('/data-user/{nombre}/{genero}','Controller@prueba');
-Route::get('/info/{nombre}','Controller@prueba1');
-Route::get('/copas/{nombre}','Controller@prueba2');
-Route::get('/estrellas/{nombre}','Controller@prueba3');
+
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     //Obtener los jugadores que estan en el juego
@@ -36,4 +33,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     //Registramos el puntaje del jugador
     $router->put('jugador/{id}/{estrellas}/{copas}', ['uses' => 'JugadorController@registrarPuntaje']);
+
+    Route::get('/data-user/{nombre}/{genero}','Controller@prueba');//para ingresar 
+	Route::get('/info/{nombre}','Controller@prueba1');
+	Route::get('/copas/{nombre}','Controller@prueba2');
+	Route::get('/estrellas/{nombre}','Controller@prueba3');
+
 });
