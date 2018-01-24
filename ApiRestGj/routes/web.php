@@ -15,15 +15,12 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Route::get('/data-user/{nombre}/{genero}','Controller@prueba');
 Route::get('/info/{nombre}','Controller@prueba1');
 Route::get('/copas/{nombre}','Controller@prueba2');
 Route::get('/estrellas/{nombre}','Controller@prueba3');
-=======
-=======
->>>>>>> 4f7f3f09308553c8f5bffe7fa2aa28985ea50122
+
 $router->group(['prefix' => 'api'], function () use ($router) {
     //Obtener los jugadores que estan en el juego
     $router->get('jugadores', ['uses' => 'JugadorController@getJugadores']);
@@ -40,7 +37,3 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     //Registramos el puntaje del jugador
     $router->put('jugador/{id}/{estrellas}/{copas}', ['uses' => 'JugadorController@registrarPuntaje']);
 });
-<<<<<<< HEAD
->>>>>>> 4f7f3f09308553c8f5bffe7fa2aa28985ea50122
-=======
->>>>>>> 4f7f3f09308553c8f5bffe7fa2aa28985ea50122
