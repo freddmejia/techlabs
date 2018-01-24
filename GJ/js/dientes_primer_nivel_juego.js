@@ -173,6 +173,7 @@ var dientes_primer_nivel_juego = {
     }
   },
 
+
   evaluar: function()
   {
     //Aqui pasa al juego
@@ -186,8 +187,12 @@ var dientes_primer_nivel_juego = {
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
     text.anchor.y = 0.5;
-          game.state.add('dientes_segundo_nivel', dientes_segundo_nivel);
-      game.state.start('dientes_segundo_nivel');
+
+
+
+      /*game.state.add('dientes_segundo_nivel', dientes_segundo_nivel);
+      game.state.start('dientes_segundo_nivel');*/
+
     }
     else {
       //sacar el numero de aciertos y redireccionar al escenario
