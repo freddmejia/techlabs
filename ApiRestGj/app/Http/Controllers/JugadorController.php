@@ -23,16 +23,9 @@ class JugadorController extends Controller
     //Se crea un nuevo jugador
     public function nuevoJugador($nick,$genre)
     {
-
-        /*$nuevoJugador = Jugador::create(
-            ['nickname' => $nick,
-            'copas' => $copas,
-            'estrellas' => $estrellas,
-            'estado' => true*/
-
         //verificar que no exista el jugador
         $player=Jugador::where('nickname',$nick)
-                    //->where('genero',$genre)
+                    ->where('genero',$genre)
                     ->get()
                     ->first();
         if(!empty($player))
@@ -45,6 +38,8 @@ class JugadorController extends Controller
             $nuevoJugador->nickname=$nick;
             $nuevoJugador->genero=$genre;
             $nuevoJugador->estado = 1;
+            $nuevoJugador->copas = 0;
+            $nuevoJugador->estrellas = 0;
             $nuevoJugador->save();  
             return $data["data"]="null";  
         }
