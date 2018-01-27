@@ -18,8 +18,9 @@ class CreateJugadorTable extends Migration
             Schema::create('jugador', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('nickname');
-                $table->integer('copas');
-                $table->integer('estrellas');
+                $table->string('genero');
+                $table->integer('copas')->nullable();
+                $table->integer('estrellas')->nullable();
                 $table->boolean('estado');
                 $table->timestamps();
                 $table->rememberToken();

@@ -5,7 +5,7 @@ var manos;
 var dientes;
 var levels;
 var ducha;
-
+var herramientas_lavar_manos;
 var niveles = {
   preload: function()
   {

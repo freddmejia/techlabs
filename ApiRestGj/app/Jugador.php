@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jugador extends Model
 {
     protected $table = 'jugador';
-    protected $fillable = ['nickname', 'copas', 'estrellas','estado'];
+    protected $fillable = ['nickname','genero', 'copas', 'estrellas','estado'];
 
     public function seguimientos()
     {

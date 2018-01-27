@@ -26,7 +26,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('jugador/{nick}', ['uses' => 'JugadorController@getJugador']);
 
     //Agregar un nuevo jugador
-    $router->get('jugadorNuevo/{nick}', ['uses' => 'JugadorController@nuevoJugador']);
+    $router->get('jugadorNuevo/{nick}/genero/{genre}', ['uses' => 'JugadorController@nuevoJugador']);
 
     //Registramos el seguimiento
     $router->get('seguimiento', ['uses' => 'SeguimientoController@nuevoSeguimiento']);
