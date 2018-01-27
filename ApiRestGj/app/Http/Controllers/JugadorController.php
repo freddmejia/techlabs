@@ -24,7 +24,10 @@ class JugadorController extends Controller
     public function nuevoJugador($nick)
     {
         $nuevoJugador = Jugador::create(
-            ['nickname' => $nick, 
+            ['nickname' => $nick,
+            'copas' => $copas,
+            'estrellas' => $estrellas,
+            'estado' => true
             ]
         );
     }

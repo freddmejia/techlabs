@@ -32,7 +32,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('seguimiento', ['uses' => 'SeguimientoController@nuevoSeguimiento']);
 
     //Registramos el puntaje del jugador
-    $router->put('jugador/{id}/{estrellas}/{copas}', ['uses' => 'JugadorController@registrarPuntaje']);
+    $router->get('jugador/{id}/{estrellas}/{copas}', ['uses' => 'JugadorController@registrarPuntaje']);
 
     Route::get('/data-user/{nombre}/{genero}','Controller@prueba');//para ingresar 
 	Route::get('/info/{nombre}','Controller@prueba1');
