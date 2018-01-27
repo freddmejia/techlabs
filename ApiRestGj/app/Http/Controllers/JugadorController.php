@@ -24,11 +24,14 @@ class JugadorController extends Controller
     public function nuevoJugador($nick,$genre)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $nuevoJugador = Jugador::create(
             ['nickname' => $nick,
             'copas' => $copas,
             'estrellas' => $estrellas,
             'estado' => true
+=======
+>>>>>>> e7563d0a21d416638021309d2397e961f80e9cde
 =======
 >>>>>>> e7563d0a21d416638021309d2397e961f80e9cde
         //verificar que no exista el jugador
