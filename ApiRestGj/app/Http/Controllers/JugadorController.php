@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jugador;
 use Illuminate\Http\Request;
-
+use App\Configuracion;
 class JugadorController extends Controller
 {
     //Obtener jugadores
@@ -50,20 +50,50 @@ class JugadorController extends Controller
 
 
     }
+    public function cps($estrellas,$copas)
+    {
+        //si esta vacia la tabla
+        $obb=Configuracion::find(1);
+        if(empty($obb))
+            {
+                $config=new Configuracion():
+                $config->estrellas=$estrellas;
+                $config->copas=$copas;
+                $config->save();
+                return $data['data']="copas y estrellas, registradas";
+            }
+        else
+        {
+            $obb->estrellas=$estrellas;
+            $obb->copas=$copas;
+            $obb->save();
+            return $data['data']="copas y estrellas, modificadas";
 
+        }
+    }
     public function registrarPuntaje($nick,$estrellas)
     {
         $buscarP=Jugador::where('nickname','=',$nick)->get()->first();
-
+        $copas=0;
         if(!empty($buscarP))
         {   
             //sumar las estrellas
-            $estrellasJ=$estrellas + $buscarP->estrellas;
-
-            $buscarP->estrellas=$estrellasJ;
-            //$buscarP->copas=$copas;
+            $estrellasSuma=$estrellas + $buscarP->estrellas;
+            //equivalente estrellas
+            $estrellasB=Configuracion::find(1);
+            if(!empty($estrellasB))
+            {
+                $a=$estrellasSuma/$estrellasB->estrellas;
+                // VERIFICA QUE RETORNA ESTA DIVISION SI ENTERO O NO
+                if($a>0)
+                {
+                    $copas=$a;
+                }
+            }
+            $buscarP->estrellas=$estrellasSuma;
+            $buscarP->copas=$copas;
             $buscarP->save();
-            return $data['data']="cambios hechos";
+            return $data['data']="estrellas registradas";
 
         }
         else
