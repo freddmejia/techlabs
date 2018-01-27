@@ -68,7 +68,7 @@ var herramientas_lavar_manos = {
       game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
       //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
 
-      input = game.add.inputField(10, 90);
+      //input = game.add.inputField(10, 90);
 
 
   },
@@ -127,7 +127,7 @@ var herramientas_lavar_manos = {
     game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
     game.state.start('herramientas_juego_lavar_manos');
 */
-    input = game.add.inputField(10, 90, {
+   /* input = game.add.inputField(10, 90, {
     font: '18px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -140,10 +140,10 @@ var herramientas_lavar_manos = {
     type: PhaserInput.InputType.password
 });
 
-
-    /*game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
+*/
+    game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
     game.state.start('herramientas_juego_lavar_manos');
-    */
+    
 
 
     /*    

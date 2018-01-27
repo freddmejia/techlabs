@@ -51,6 +51,22 @@ class JugadorController extends Controller
 
     }
 
-    
+    public function registrarPuntaje($nick,$estrellas,$copas)
+    {
+        $buscarP=Jugador::where('nickname','=',$nick)->get()->first();
+
+        if(!empty($buscarP))
+        {
+            $buscarP->estrellas=$estrellas;
+            $buscarP->copas=$copas;
+            $buscarP->save();
+            return $data['data']="cambios hechos";
+
+        }
+        else
+        {
+            return $data['data']="jugador no existe";
+        }
+    }
 
 }
