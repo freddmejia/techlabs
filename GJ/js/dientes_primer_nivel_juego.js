@@ -190,8 +190,8 @@ var dientes_primer_nivel_juego = {
 
 
 
-      /*game.state.add('dientes_segundo_nivel', dientes_segundo_nivel);
-      game.state.start('dientes_segundo_nivel');*/
+      game.state.add('dientes_segundo_nivel', dientes_segundo_nivel);
+      game.state.start('dientes_segundo_nivel');
 
     }
     else {
