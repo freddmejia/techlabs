@@ -30,7 +30,7 @@ class JugadorController extends Controller
                     ->first();
         if(!empty($player))
         {
-            return $data["data"]="jugador existe";
+            return $data["data"]="null";
         }
         else
         {
@@ -41,7 +41,7 @@ class JugadorController extends Controller
             $nuevoJugador->copas = 0;
             $nuevoJugador->estrellas = 0;
             $nuevoJugador->save();  
-            return $data["data"]="null";  
+            return $data["data"]="datos guardados";  
         }
        /* $nuevoJugador = Jugador::create(
             ['nickname' => $nick, 
@@ -98,12 +98,18 @@ class JugadorController extends Controller
         }
         else
         {
-            return $data['data']="jugador no existe";
+            return $data['data']="null";
         }
     }
     public function players()
     {
-        return $data['data']=Jugador::all();
+        if(!empty(Jugador::all()))
+            {
+                return $data['data']=Jugador::all();
+            }
+        else {
+            return $data['data']='null';
+        }
     }
 
 }
