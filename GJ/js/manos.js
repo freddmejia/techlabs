@@ -7,6 +7,7 @@ var izquierda;
 
 
 var nivel_lavar_manos = {
+	
 	preload: funcion()
 	{
 		game.load.image('fondo','img/fondo.jpg');

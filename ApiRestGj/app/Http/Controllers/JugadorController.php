@@ -56,7 +56,7 @@ class JugadorController extends Controller
         $obb=Configuracion::find(1);
         if(empty($obb))
             {
-                $config=new Configuracion():
+                $config=new Configuracion();
                 $config->estrellas=$estrellas;
                 $config->copas=$copas;
                 $config->save();

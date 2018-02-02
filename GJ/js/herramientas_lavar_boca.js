@@ -22,6 +22,9 @@ var tween;
 var herramientas_lavar_boca = {
   preload: function()
   {
+    //this.game.add.plugin(PhaserInput.Plugin);
+    game.plugins.add(PhaserInput.Plugin);
+
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
   	game.scale.pageAlignVertically = true;
@@ -89,8 +92,35 @@ var herramientas_lavar_boca = {
 
   cambiarVista: function()
   {
-    game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
+    console.log('error ok');
+    var password = game.add.inputField(600, 290,{
+      font: '18px Arial',
+      fill: '#212121',
+      fontWeight: 'bold',
+      width: 150,
+      padding: 8,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 6
+    });
+   /* var password = game.add.inputField(10, 90, {
+      font: '18px Arial',
+      fill: '#212121',
+      fontWeight: 'bold',
+      width: 150,
+      padding: 8,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 6,
+      placeHolder: 'Password',
+      type: PhaserInput.InputType.password
+  });
+*/
+    /*game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
     game.state.start('herramientas_juego_lavar_boca');
+    */
+
+    //////////////////////
     /*    
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');*/

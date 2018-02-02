@@ -39,10 +39,9 @@ var pos1 = 0;
 var pos2 = 0;
 var jugar;
 var herramientas_juego_lavar_manos = {
+
   preload: function()
   {
-
-
 //Nivel de lavados de Manos
 
 
@@ -192,10 +191,9 @@ this.barrido();
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
       text.anchor.y = 0.5;
+
       game.state.add('dientes_primer_nivel', dientes_primer_nivel);
       game.state.start('dientes_primer_nivel');
-       
-
     }
     else {
       //sacar el numero de aciertos y redireccionar al escenario

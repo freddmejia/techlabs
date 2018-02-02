@@ -44,7 +44,7 @@ var nivel_lavar_dientes = {
   	game.load.image('imagen5','img/manos/6.png');
   	game.load.image('imagen6','img/manos/7.png');
   	game.load.image('imagen7','img/manos/8.png');
-   
+
    // game.load.image('imagen8','img/manos/9.png');
 
   	//cargar la imagen
@@ -142,9 +142,43 @@ var nivel_lavar_dientes = {
 
   cambiarVista: function()
   {
+    //Antes de cambiar la vista se hace la peticion que se necesita el nickName
+
+    this.myInput = this.createInput(this.game.world.centerX, 50);
+    this.myInput.anchor.set(0.5);
+    this.myInput.canvasInput.value('Esto es la verga! :D');
+    this.myInput.canvasInput.focus();
+    
+    this.game.add.tween(this.myInput).to({ y: 600 }, 6000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 
     game.state.add('juego_dientes', juego_dientes);
     game.state.start('juego_dientes');
+  },
+
+  createInput: function(x, y){
+    var bmd = this.add.bitmapData(400, 50);    
+    var myInput = this.game.add.sprite(x, y, bmd);
+    
+    myInput.canvasInput = new CanvasInput({
+      canvas: bmd.canvas,
+      fontSize: 30,
+      fontFamily: 'Arial',
+      fontColor: '#212121',
+      fontWeight: 'bold',
+      width: 400,
+      padding: 8,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 3,
+      boxShadow: '1px 1px 0px #fff',
+      innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
+      placeHolder: 'Enter message here...'
+    });
+    myInput.inputEnabled = true;
+    myInput.input.useHandCursor = true;    
+    myInput.events.onInputUp.add(this.inputFocus, this);
+    
+    return myInput;
   },
 
   fillImages: function()
