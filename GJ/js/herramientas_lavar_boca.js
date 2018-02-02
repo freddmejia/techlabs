@@ -23,7 +23,12 @@ var herramientas_lavar_boca = {
   preload: function()
   {
     //this.game.add.plugin(PhaserInput.Plugin);
+
+    game.plugins.add(Fabrique.Plugins.InputField);
     game.plugins.add(PhaserInput.Plugin);
+
+
+    //game.plugins.add(PhaserInput.Plugin);
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
@@ -93,29 +98,37 @@ var herramientas_lavar_boca = {
   cambiarVista: function()
   {
     console.log('error ok');
-    var password = game.add.inputField(600, 290,{
-      font: '18px Arial',
-      fill: '#212121',
-      fontWeight: 'bold',
-      width: 150,
-      padding: 8,
-      borderWidth: 1,
-      borderColor: '#000',
-      borderRadius: 6
-    });
-   /* var password = game.add.inputField(10, 90, {
-      font: '18px Arial',
-      fill: '#212121',
-      fontWeight: 'bold',
-      width: 150,
-      padding: 8,
-      borderWidth: 1,
-      borderColor: '#000',
-      borderRadius: 6,
-      placeHolder: 'Password',
-      type: PhaserInput.InputType.password
+
+var input = new CanvasInput({
+  canvas: document.getElementById('canvas'),
+  fontSize: 18,
+  fontFamily: 'Arial',
+  fontColor: '#212121',
+  fontWeight: 'bold',
+  width: 300,
+  padding: 8,
+  borderWidth: 1,
+  borderColor: '#000',
+  borderRadius: 3,
+  boxShadow: '1px 1px 0px #fff',
+  innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
+  placeHolder: 'Enter message here...'
+});
+  /*  var password = game.add.inputField(game.world.centerX, 290, {
+    font: '18px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 150,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 6,
+    placeHolder: 'nickname',
+    type: PhaserInput.InputType.text
   });
 */
+
+
     /*game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
     game.state.start('herramientas_juego_lavar_boca');
     */
