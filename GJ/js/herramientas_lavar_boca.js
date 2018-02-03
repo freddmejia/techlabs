@@ -18,14 +18,15 @@ var valor_division=0;
 //Primero las creo vacias
 var posiciones = [];
 var tween;
-
+var nick ;
 var herramientas_lavar_boca = {
   preload: function()
   {
     //this.game.add.plugin(PhaserInput.Plugin);
-
+    nick="";
     game.plugins.add(Fabrique.Plugins.InputField);
     game.plugins.add(PhaserInput.Plugin);
+    //game.add.plugin(Fabrique.Plugins.InputField);
 
 
     //game.plugins.add(PhaserInput.Plugin);
@@ -85,9 +86,9 @@ var herramientas_lavar_boca = {
 
   update: function()
   {
+    //nick.update();
     game.physics.enable(group, Phaser.Physics.Arcade);
     //group.body.velocity.x -= 150;
-
   },
 
   render: function()
@@ -99,22 +100,10 @@ var herramientas_lavar_boca = {
   {
     console.log('error ok');
 
-var input = new CanvasInput({
-  canvas: document.getElementById('canvas'),
-  fontSize: 18,
-  fontFamily: 'Arial',
-  fontColor: '#212121',
-  fontWeight: 'bold',
-  width: 300,
-  padding: 8,
-  borderWidth: 1,
-  borderColor: '#000',
-  borderRadius: 3,
-  boxShadow: '1px 1px 0px #fff',
-  innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-  placeHolder: 'Enter message here...'
-});
-  /*  var password = game.add.inputField(game.world.centerX, 290, {
+
+
+
+  /*  nick= game.add.inputField(game.world.centerX, 290, {
     font: '18px Arial',
     fill: '#212121',
     fontWeight: 'bold',
@@ -122,16 +111,38 @@ var input = new CanvasInput({
     padding: 8,
     borderWidth: 1,
     borderColor: '#000',
-    borderRadius: 6,
+    //borderRadius: 6,
     placeHolder: 'nickname',
     type: PhaserInput.InputType.text
   });
 */
+var input1;
+    var bmd = this.add.bitmapData(400, 50);    
+    var input = this.game.add.sprite(game.world.centerX, 290, bmd);
+    input.anchor.set(0.5);
+   // input.canvasInput.value('nickname');
+    //input.canvasInput.focus();
+    //this.game.add.tween(this.input1).to({ y: 600 }, 6000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
 
+ nick = game.add.inputField(game.world.centerX, 290, {
+    font: '18px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 150,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    //borderRadius: 6,
+    placeHolder: 'nickname',
+    type: Fabrique.InputType.text
+});
 
-    /*game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
-    game.state.start('herramientas_juego_lavar_boca');
-    */
+  nick.inputEnabled=true;
+    //input1.inputEnabled = true;
+    //input1.input.useHandCursor = true;    
+    //input1.events.onInputUp.add(this.inputFocus, this);
+    
+
 
     //////////////////////
     /*    
@@ -139,7 +150,9 @@ var input = new CanvasInput({
     game.state.start('juego_manos');*/
   },
 
-
+  inputFocus: function(sprite){
+    sprite.canvasInput.focus();
+  },
   getRandomArray: function(min,max){
     var A= [];
     while(max>= min) A.push(max--)
