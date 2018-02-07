@@ -18,12 +18,18 @@ var valor_division=0;
 //Primero las creo vacias
 var posiciones = [];
 var tween;
-
+var nick ;
 var herramientas_lavar_boca = {
   preload: function()
   {
     //this.game.add.plugin(PhaserInput.Plugin);
+    nick="";
+    game.plugins.add(Fabrique.Plugins.InputField);
     game.plugins.add(PhaserInput.Plugin);
+    //game.add.plugin(Fabrique.Plugins.InputField);
+
+
+    //game.plugins.add(PhaserInput.Plugin);
 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
@@ -80,9 +86,9 @@ var herramientas_lavar_boca = {
 
   update: function()
   {
+    //nick.update();
     game.physics.enable(group, Phaser.Physics.Arcade);
     //group.body.velocity.x -= 150;
-
   },
 
   render: function()
@@ -93,6 +99,7 @@ var herramientas_lavar_boca = {
   cambiarVista: function()
   {
     console.log('error ok');
+<<<<<<< HEAD
     var password = game.add.inputField(600, 290,{
       font: '18px Arial',
       fill: '#212121',
@@ -112,11 +119,52 @@ var herramientas_lavar_boca = {
       borderRadius: 6,
       placeHolder: 'Password',
       type: PhaserInput.InputType.password
+=======
+
+
+
+
+  /*  nick= game.add.inputField(game.world.centerX, 290, {
+    font: '18px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 150,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    //borderRadius: 6,
+    placeHolder: 'nickname',
+    type: PhaserInput.InputType.text
+>>>>>>> 34eaa3ef3533f76d74df801e23bc16fdb958272a
   });
 */
-    /*game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
-    game.state.start('herramientas_juego_lavar_boca');
-    */
+var input1;
+    var bmd = this.add.bitmapData(400, 50);    
+    var input = this.game.add.sprite(game.world.centerX, 290, bmd);
+    input.anchor.set(0.5);
+   // input.canvasInput.value('nickname');
+    //input.canvasInput.focus();
+    //this.game.add.tween(this.input1).to({ y: 600 }, 6000, Phaser.Easing.Quadratic.InOut, true, 0, 1000, true);
+
+ nick = game.add.inputField(game.world.centerX, 290, {
+    font: '18px Arial',
+    fill: '#212121',
+    fontWeight: 'bold',
+    width: 150,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#000',
+    //borderRadius: 6,
+    placeHolder: 'nickname',
+    type: Fabrique.InputType.text
+});
+
+  nick.inputEnabled=true;
+    //input1.inputEnabled = true;
+    //input1.input.useHandCursor = true;    
+    //input1.events.onInputUp.add(this.inputFocus, this);
+    
+
 
     //////////////////////
     /*    
@@ -124,7 +172,9 @@ var herramientas_lavar_boca = {
     game.state.start('juego_manos');*/
   },
 
-
+  inputFocus: function(sprite){
+    sprite.canvasInput.focus();
+  },
   getRandomArray: function(min,max){
     var A= [];
     while(max>= min) A.push(max--)
