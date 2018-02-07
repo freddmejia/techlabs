@@ -99,9 +99,7 @@ var herramientas_lavar_boca = {
       fontWeight: 'bold',
       width: 150,
       padding: 8,
-      borderWidth: 1,
-      borderColor: '#000',
-      borderRadius: 6
+      borderWidth: 1
     });
    /* var password = game.add.inputField(10, 90, {
       font: '18px Arial',
