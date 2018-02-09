@@ -49,6 +49,8 @@ var juego_manos = {
     game.load.bitmapFont('shortStack', 'assets/fonts/bitmapFonts/shortStack.png', 'assets/fonts/bitmapFonts/shortStack.fnt');
 
     console.log('clase nueva');
+    var NickName = localStorage.getItem("NickName");
+    console.log(NickName);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;

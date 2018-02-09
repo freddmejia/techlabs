@@ -179,12 +179,36 @@ this.barrido();
 
     if(this.verificarImagenes())
     {
-      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
+      var NickName = "";
+      var estrellas = "";
+      if(window.localStorage)
+      {
+        localStorage.setItem("Estrellas", "3");
+        estrellas = localStorage.getItem("Estrellas");
+        console.log(estrellas);
+        NickName = localStorage.getItem("NickName");
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
 
-      text.anchor.y = 0.5;
-      game.state.add('manos_primer_nivel', manos_primer_nivel);
-      game.state.start('manos_primer_nivel');
-       
+      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style); 
+
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/jugador/" + NickName + "/" + parseInt(estrellas),
+        dataType: "json",
+        success: function(data){
+          var info = data;
+          text.anchor.y = 0.5;
+          console.log(info.data);
+          console.log(info.estrellas);
+          game.state.add('manos_primer_nivel', manos_primer_nivel);
+          game.state.start('manos_primer_nivel');
+        }
+      }); 
 
     }
     else {

@@ -23,6 +23,7 @@ class JugadorController extends Controller
     //Se crea un nuevo jugador
     public function nuevoJugador($nick,$genre)
     {
+        $data = array();
         //verificar que no exista el jugador
         $player=Jugador::where('nickname',$nick)
                     ->where('genero',$genre)
@@ -30,7 +31,7 @@ class JugadorController extends Controller
                     ->first();
         if(!empty($player))
         {
-            return $data["data"]="null";
+            $data["data"]="null";
         }
         else
         {
@@ -41,13 +42,14 @@ class JugadorController extends Controller
             $nuevoJugador->copas = 0;
             $nuevoJugador->estrellas = 0;
             $nuevoJugador->save();  
-            return $data["data"]="datos guardados";  
+            $data["data"]="datos guardados";  
         }
        /* $nuevoJugador = Jugador::create(
             ['nickname' => $nick, 
             ]
         );*/
 
+        return $data;
 
     }
     public function cps($estrellas,$copas)
@@ -75,6 +77,7 @@ class JugadorController extends Controller
     {
         $buscarP=Jugador::where('nickname','=',$nick)->get()->first();
         $copas=0;
+        $data = array();
         if(!empty($buscarP))
         {   
             //sumar las estrellas
@@ -83,7 +86,7 @@ class JugadorController extends Controller
             $estrellasB=Configuracion::find(1);
             if(!empty($estrellasB))
             {
-                $a=$estrellasSuma/$estrellasB->estrellas;
+                $a=intval($estrellasSuma/$estrellasB->estrellas);
                 // VERIFICA QUE RETORNA ESTA DIVISION SI ENTERO O NO
                 if($a>0)
                 {
@@ -91,15 +94,17 @@ class JugadorController extends Controller
                 }
             }
             $buscarP->estrellas=$estrellasSuma;
-            $buscarP->copas=$copas;
+            $buscarP->copas= $copas;
             $buscarP->save();
-            return $data['data']="estrellas registradas";
-
+            $data['data']="estrellas registradas";
+            $data['estrellas']=$copas;
         }
         else
         {
-            return $data['data']="null";
+            $data['data']="null";
         }
+
+        return $data;
     }
     public function players()
     {

@@ -66,6 +66,11 @@ $app->singleton(
 //Con esto podemos habilitar la seguridad de las rutas 
 $app->routeMiddleware([
     'auth' => App\Http\Middleware\Authenticate::class,
+    'cors' => App\Http\Middleware\CorsMiddleware::class,
+]);
+
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
 ]);
 
 /*

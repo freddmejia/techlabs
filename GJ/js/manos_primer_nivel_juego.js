@@ -177,6 +177,19 @@ var manos_primer_nivel_juego = {
     //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
     if(this.verificarImagenes())
     {
+
+      if(window.localStorage)
+      {
+        localStorage.setItem("Estrellas", "6");
+        var estrellas = localStorage.getItem("Estrellas");
+        console.log(estrellas);
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
+
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
     text.anchor.y = 0.5;

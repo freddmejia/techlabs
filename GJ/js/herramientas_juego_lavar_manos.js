@@ -188,6 +188,17 @@ this.barrido();
 
     if(this.verificarImagenes())
     {
+      if(window.localStorage)
+      {
+        localStorage.setItem("Estrellas", "3");
+        var estrellas = localStorage.getItem("Estrellas");
+        console.log(estrellas);
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
       text.anchor.y = 0.5;
