@@ -185,26 +185,41 @@ this.barrido();
     this.barrido();
     var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
     //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
+    var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
     if(this.verificarImagenes())
     {
+      var NickName = "";
+      var estrellas = "";
       if(window.localStorage)
       {
+
         localStorage.setItem("Estrellas", "3");
         var estrellas = localStorage.getItem("Estrellas");
         console.log(estrellas);
+        NickName = sessionStorage.getItem("NickName");
       }
       else
       {
         console.log("No se puede");
         throw new Error('Tu Browser no soporta LocalStorage!');
       }
-      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
 
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/jugador/" + NickName + "/" + parseInt(estrellas),
+        dataType: "json",
+        success: function(data){
+          var info = data;
+          text.anchor.y = 0.5;
+          console.log(info.data);
+          console.log(info.estrellas);
+          game.state.add('dientes_primer_nivel', dientes_primer_nivel);
+          game.state.start('dientes_primer_nivel');
+        }
+      });  
+  
       text.anchor.y = 0.5;
-
-      game.state.add('dientes_primer_nivel', dientes_primer_nivel);
-      game.state.start('dientes_primer_nivel');
     }
     else {
       //sacar el numero de aciertos y redireccionar al escenario

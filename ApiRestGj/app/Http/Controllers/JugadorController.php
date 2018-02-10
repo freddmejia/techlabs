@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Jugador;
 use Illuminate\Http\Request;
 use App\Configuracion;
+use Illuminate\Support\Facades\DB;
+
 class JugadorController extends Controller
 {
     //Obtener jugadores
@@ -106,6 +108,21 @@ class JugadorController extends Controller
 
         return $data;
     }
+
+    public function leaderBoard()
+    {
+        /*$jugadores = DB::table('jugador')->
+                    select(DB::raw('max(copas) as copas_ganadas,nickname,genero,copas,estrellas'))
+                    //->paginate(5)
+                    //->get()
+                    ->groupBy('nickname')
+                    ->paginate(5);*/
+        $jugadores = DB::table('jugador')->orderBy('estrellas','desc')->take(5)->get();
+
+        return  $jugadores;
+
+    }
+
     public function players()
     {
         if(!empty(Jugador::all()))

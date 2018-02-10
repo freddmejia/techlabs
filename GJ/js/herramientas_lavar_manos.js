@@ -19,12 +19,15 @@ var input;
 //Primero las creo vacias
 var posiciones = [];
 var tween;
-
+var nick;
+var genero;
+var ok;
 var herramientas_lavar_manos = {
   preload: function()
   {
     //game.add.plugin(PhaserInput.Plugin);
-
+    game.plugins.add(Fabrique.Plugins.InputField);
+    game.plugins.add(PhaserInput.Plugin);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
   	game.scale.pageAlignVertically = true;
@@ -34,7 +37,7 @@ var herramientas_lavar_manos = {
   	game.load.image('izquierda', 'img/izquierda.png');
   	game.load.image('imagen9','img/manos/9.png');
   	game.load.image('imagen10','img/manos/10.png');
-  	
+    game.load.image('ok','img/ok.png');
 
   	//cargar la imagen
   	group=game.add.group();
@@ -94,32 +97,6 @@ var herramientas_lavar_manos = {
       game.debug.text("El juego comienza en "+ "20 segundos, " + game.time.events.duration, 32, 32);
   },
 
-  createInput: function(x, y){
-    var bmd = this.add.bitmapData(400, 50);    
-    var myInput = this.game.add.sprite(x, y, bmd);
-    
-    myInput.canvasInput = new CanvasInput({
-      canvas: bmd.canvas,
-      fontSize: 30,
-      fontFamily: 'Arial',
-      fontColor: '#212121',
-      fontWeight: 'bold',
-      width: 400,
-      padding: 8,
-      borderWidth: 1,
-      borderColor: '#000',
-      borderRadius: 3,
-      boxShadow: '1px 1px 0px #fff',
-      innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
-      placeHolder: 'Enter message here...'
-    });
-    myInput.inputEnabled = true;
-    myInput.input.useHandCursor = true;    
-    myInput.events.onInputUp.add(this.inputFocus, this);
-    
-    return myInput;
-  },
-
   cambiarVista: function()
   {
 
@@ -141,8 +118,63 @@ var herramientas_lavar_manos = {
 });
 
 */
+
+var NickName = "";
+if(window.sessionStorage)
+{
+  NickName = sessionStorage.getItem("NickName");
+  if(NickName == null)
+  {
+    //Se agrega el input del nickname
+    nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
+      font: '30px Arial',
+      fill: '#212121',
+      fontWeight: 'bold',
+      height: 14,
+      width: 175,
+      borderWidth: 1,
+      padding: 20,
+      borderColor: '#000',
+      //borderRadius: 6,
+      placeHolder: 'nickname',
+      type: Fabrique.InputType.text
+    });
+
+    nick.blockInput = false;
+
+    //Se agrega el input del genero
+    genero = game.add.inputField(game.world.centerX - 150, game.world.centerY + 100, {
+      font: '30px Arial',
+      fill: '#212121',
+      fontWeight: 'bold',
+      height: 14,
+      width: 175,
+      borderWidth: 1,
+      padding: 20,
+      borderColor: '#000',
+      //borderRadius: 6,
+      placeHolder: 'Genero',
+      type: Fabrique.InputType.text
+    });
+
+    //Agregamos un boton para enviar la informacion
+    ok= game.add.sprite(game.world.centerX - 75,game.world.centerY + 200, 'ok');
+    ok.width = 100;
+    ok.height = 100;
+    ok.inputEnabled = true;
+    ok.events.onInputDown.add(this.procesar);
+  }
+  else{
+    console.log(NickName);
     game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
     game.state.start('herramientas_juego_lavar_manos');
+  }
+}
+else
+{
+  console.log("No se puede");
+  throw new Error('Tu Browser no soporta LocalStorage!');
+}
     
 
 
@@ -151,6 +183,28 @@ var herramientas_lavar_manos = {
     game.state.start('juego_manos');*/
   },
 
+  procesar: function(){
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero.value,
+      dataType: "json",
+      success: function(data){
+        var info = data;
+        console.log(info.data);
+        if(window.sessionStorage)
+        {
+          sessionStorage.setItem("NickName", nick.value);
+        }
+        else
+        {
+          console.log("No se puede");
+          throw new Error('Tu Browser no soporta LocalStorage!');
+        }
+        game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
+        game.state.start('herramientas_juego_lavar_manos');
+      }
+    });
+  },
 
   getRandomArray: function(min,max){
     var A= [];

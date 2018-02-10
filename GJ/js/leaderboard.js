@@ -111,16 +111,63 @@ var leaderBoard = {
 
   createText: function()
   {
-    var style = { font: "28px Finger Paint", fill: "#fff", tabs: 150 };
+    var style = { font: "28px Finger Paint", fill: "#fff", tabs: [164,120,80] };
+    /*var cabereceras=["JUGADOR","COPAS","PUNTAJE","FECHA"];
+    var dat=[];
+    var cabecera;
+    var incre=0;*/
+    var cabecera1 = game.add.text(game.world.centerX - 300,90, "JUGADOR", style);
+    var cabecera2 = game.add.text(game.world.centerX - 100,90, "COPAS", style);
+    var cabecera3 = game.add.text(game.world.centerX + 100,90, "PUNTAJE", style);
+    var cabecera4 = game.add.text(game.world.centerX + 300,90, "FECHA", style);
+   // cabecera = game.add.text(game.world.centerX - 220,90, '', style);
+   //cabecera.parseList(cabereceras);
 
-    cabecera = game.add.text(game.world.centerX - 220, game.world.centerY - 200, "JUGADOR\t     PUNTAJE\t       FECHA", style);
-    cabecera.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+   cabecera1.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+   cabecera2.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+   cabecera3.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+   cabecera4.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
 
-    registro1 = game.add.text(game.world.centerX - 220, game.world.centerY - 100, "JUGADOR 1\t  20     \t             21/12/2017", style);
-    registro1.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
 
-    registro2 = game.add.text(game.world.centerX - 220, game.world.centerY, "JUGADOR 2\t  10     \t             21/12/2017", style);
-    registro2.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8000/api/leaderBoard/",
+      dataType: "json",
+      success: function(data){
+        var info = data;
+        console.log(info)
+        if(info.length>=0)
+        {
+          var y = 180;
+          $.each(info,function(index,item){
+            console.log(item);
+            //dat.push([item.nickname,item.copas,item.estrellas,item.updated_at]);
+            
+            //registro = game.add.text(game.world.centerX - 220, y, item.nickname+"\t"+item.estrellas+"\t"+item.updated_at, style);
+            //registro.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            var name = game.add.text(game.world.centerX - 300, y, item.nickname,style);
+            var copas = game.add.text(game.world.centerX - 100, y, item.nickname,style)
+            var estrellas = game.add.text(game.world.centerX + 100, y, item.estrellas,style);
+            var fecha = game.add.text(game.world.centerX + 300, y, item.updated_at,style);
+            //registro = game.add.text(game.world.centerX - 220, y, +"\t"++"\t"+, );
+            //registro.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            name.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            copas.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            estrellas.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            fecha.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
+            y = y + 90;
+          });
+        }
+      }
+    });
+    //registro=game.add.text(game.world.centerX - 220, 180,'',style);
+    //registro.parseList(dat);
+    
+
+    
+
+    //registro2 = game.add.text(game.world.centerX - 220, game.world.centerY, "JUGADOR 2\t  10     \t             21/12/2017", style);
+    //registro2.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
   },
 
   abrirCopas: function()

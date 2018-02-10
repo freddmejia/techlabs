@@ -179,12 +179,14 @@ var manos_segundo_nivel_juego = {
 
     if(this.verificarImagenes())
     {
-
-      if(window.localStorage)
+      var NickName = "";
+      var estrellas = "";
+      if(window.sessionStorage)
       {
-        localStorage.setItem("Estrellas", "9");
-        var estrellas = localStorage.getItem("Estrellas");
+        sessionStorage.setItem("Estrellas", "3");
+        estrellas = sessionStorage.getItem("Estrellas");
         console.log(estrellas);
+        NickName = sessionStorage.getItem("NickName");
       }
       else
       {
@@ -193,8 +195,20 @@ var manos_segundo_nivel_juego = {
       }
 
       var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-
-    text.anchor.y = 0.5;
+      
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8000/api/jugador/" + NickName + "/" + parseInt(estrellas),
+        dataType: "json",
+        success: function(data){
+          var info = data;
+          text.anchor.y = 0.5;
+          console.log(info.data);
+          console.log(info.estrellas);
+          game.state.add('ducha_primer_nivel', ducha_primer_nivel);
+          game.state.start('ducha_primer_nivel');
+        }
+      });
          /* game.state.add('dientes_segundo_nivel', dientes_segundo_nivel);
       game.state.start('dientes_segundo_nivel');*/
     }

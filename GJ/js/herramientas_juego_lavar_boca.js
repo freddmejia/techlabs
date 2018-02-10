@@ -181,12 +181,12 @@ this.barrido();
     {
       var NickName = "";
       var estrellas = "";
-      if(window.localStorage)
+      if(window.sessionStorage)
       {
-        localStorage.setItem("Estrellas", "3");
-        estrellas = localStorage.getItem("Estrellas");
+        sessionStorage.setItem("Estrellas", "3");
+        estrellas = sessionStorage.getItem("Estrellas");
         console.log(estrellas);
-        NickName = localStorage.getItem("NickName");
+        NickName = sessionStorage.getItem("NickName");
       }
       else
       {

@@ -44,5 +44,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/jugadores', ['uses' => 'JugadorController@players']);
     //guardar las copas y estrellas por el superadmin
     $router->get('/estrellasCopas/{estrellas}/{copas}',['uses' => 'JugadorController@cps']);
+    $router->get('/leaderBoard', ['uses' => 'JugadorController@leaderBoard']);
 
 });

@@ -17,6 +17,9 @@ var con=0;
 var text=0;
 var timer=0;
 var valor_division=0;
+var nick;
+var genero;
+var ok;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [];
@@ -25,6 +28,8 @@ var tween;
 var ducha_primer_nivel = {
   preload: function()
   {
+    game.plugins.add(Fabrique.Plugins.InputField);
+    game.plugins.add(PhaserInput.Plugin);
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
   	game.scale.pageAlignHorizontally = true;
   	game.scale.pageAlignVertically = true;
@@ -36,7 +41,7 @@ var ducha_primer_nivel = {
   	game.load.image('imagen1','img/ducha/2.png');
   	game.load.image('imagen2','img/ducha/3.png');
   	game.load.image('imagen3','img/ducha/4.png');
-
+    game.load.image('ok','img/ok.png');
    
    // game.load.image('imagen8','img/manos/9.png');
 
@@ -114,12 +119,86 @@ var ducha_primer_nivel = {
 
   cambiarVista: function()
   {
+      var NickName = "";
+      if(window.sessionStorage)
+      {
+        NickName = sessionStorage.getItem("NickName");
+        if(NickName == null)
+        {
+          //Se agrega el input del nickname
+          nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
+            font: '30px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            height: 14,
+            width: 175,
+            borderWidth: 1,
+            padding: 20,
+            borderColor: '#000',
+            //borderRadius: 6,
+            placeHolder: 'nickname',
+            type: Fabrique.InputType.text
+          });
 
-    game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
-    game.state.start('ducha_primer_nivel_juego');
+          nick.blockInput = false;
+
+          //Se agrega el input del genero
+          genero = game.add.inputField(game.world.centerX - 150, game.world.centerY + 100, {
+            font: '30px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            height: 14,
+            width: 175,
+            borderWidth: 1,
+            padding: 20,
+            borderColor: '#000',
+            //borderRadius: 6,
+            placeHolder: 'Genero',
+            type: Fabrique.InputType.text
+          });
+
+          //Agregamos un boton para enviar la informacion
+          ok= game.add.sprite(game.world.centerX - 75,game.world.centerY + 200, 'ok');
+          ok.width = 100;
+          ok.height = 100;
+          ok.inputEnabled = true;
+          ok.events.onInputDown.add(this.procesar);
+        }
+        else{
+          console.log(NickName);
+          game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
+          game.state.start('ducha_primer_nivel_juego');
+        }
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
   },
 
-
+  procesar: function(){
+    $.ajax({
+      method: "GET",
+      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero.value,
+      dataType: "json",
+      success: function(data){
+        var info = data;
+        console.log(info.data);
+        if(window.sessionStorage)
+        {
+          sessionStorage.setItem("NickName", nick.value);
+        }
+        else
+        {
+          console.log("No se puede");
+          throw new Error('Tu Browser no soporta LocalStorage!');
+        }
+        game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
+        game.state.start('ducha_primer_nivel_juego');
+      }
+    });
+  },
 
   getRandomArray: function(min,max){
     var A= [];

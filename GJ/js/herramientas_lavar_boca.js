@@ -104,6 +104,62 @@ var herramientas_lavar_boca = {
     console.log('error ok');
 
 
+    var NickName = "";
+      if(window.sessionStorage)
+      {
+        NickName = sessionStorage.getItem("NickName");
+        if(NickName == null)
+        {
+          //Se agrega el input del nickname
+          nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
+            font: '30px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            height: 14,
+            width: 175,
+            borderWidth: 1,
+            padding: 20,
+            borderColor: '#000',
+            //borderRadius: 6,
+            placeHolder: 'nickname',
+            type: Fabrique.InputType.text
+          });
+
+          nick.blockInput = false;
+
+          //Se agrega el input del genero
+          genero = game.add.inputField(game.world.centerX - 150, game.world.centerY + 100, {
+            font: '30px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            height: 14,
+            width: 175,
+            borderWidth: 1,
+            padding: 20,
+            borderColor: '#000',
+            //borderRadius: 6,
+            placeHolder: 'Genero',
+            type: Fabrique.InputType.text
+          });
+
+          //Agregamos un boton para enviar la informacion
+          ok= game.add.sprite(game.world.centerX - 75,game.world.centerY + 200, 'ok');
+          ok.width = 100;
+          ok.height = 100;
+          ok.inputEnabled = true;
+          ok.events.onInputDown.add(this.procesar);
+        }
+        else{
+          console.log(NickName);
+          game.state.add('herramientas_juego_lavar_boca', herramientas_juego_lavar_boca);
+          game.state.start('herramientas_juego_lavar_boca');
+        }
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
 
 
   /*  nick= game.add.inputField(game.world.centerX, 290, {
@@ -119,7 +175,7 @@ var herramientas_lavar_boca = {
     type: PhaserInput.InputType.text
   });
 */
-    var input1;
+    /*var input1;
     var bmd = this.add.bitmapData(400, 50);    
     var input = this.game.add.sprite(game.world.centerX, game.world.centerY, bmd);
     input.anchor.set(0.5);
@@ -173,7 +229,6 @@ var herramientas_lavar_boca = {
 
 
     //////////////////////
-    /*    
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');*/
   },
@@ -215,9 +270,9 @@ var herramientas_lavar_boca = {
       success: function(data){
         var info = data;
         console.log(info.data);
-        if(window.localStorage)
+        if(window.sessionStorage)
         {
-          localStorage.setItem("NickName", nick.value);
+          sessionStorage.setItem("NickName", nick.value);
         }
         else
         {
