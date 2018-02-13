@@ -24,7 +24,9 @@ var ok;
 //Primero las creo vacias
 var posiciones = [];
 var tween;
-
+var btnMasc;
+var btnFem;
+var textoLogin;
 var ducha_primer_nivel = {
   preload: function()
   {
@@ -42,7 +44,10 @@ var ducha_primer_nivel = {
   	game.load.image('imagen2','img/ducha/3.png');
   	game.load.image('imagen3','img/ducha/4.png');
     game.load.image('ok','img/ok.png');
-   
+    game.load.image('ok','img/ok.png');
+    game.load.image('msc','img/msc.png');
+    game.load.image('fem','img/fem.png');
+
    // game.load.image('imagen8','img/manos/9.png');
 
   	//cargar la imagen
@@ -58,40 +63,122 @@ var ducha_primer_nivel = {
     console.log('create');
       //console.log(game.world.centerX - 600);
       valor_division = window.screen.width / 8;
-      var style = { font: "30px Arial", fill: "#FE0023", align: "center" };
+      
+      var NickName = "";
+      if(window.sessionStorage)
+      {
+        NickName = sessionStorage.getItem("NickName");
+        if(NickName == null || NickName == "")
+        {
+      
+          var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
+            
+          textoLogin = game.add.text(400, 100, 'INGRESE SU NOMBRE Y GENERO', style);
+      
+          //Se agrega el input del nickname
+          nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
+            font: '30px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            height: 14,
+            width: 175,
+            borderWidth: 1,
+            padding: 20,
+            borderColor: '#000',
+            //borderRadius: 6,
+            placeHolder: 'nickname',
+            type: Fabrique.InputType.text
+          });
+      
+          nick.blockInput = false;
+      
+          btnMasc = game.add.sprite(game.world.centerX - 200, game.world.centerY + 200, 'msc');
+          btnMasc.width = 100;
+          btnMasc.height = 100;
+          btnMasc.inputEnabled = true;
+          btnMasc.events.onInputDown.add(this.realizarAccion, this);
+      
+          btnFem = game.add.sprite(game.world.centerX, game.world.centerY + 200, 'fem');
+          btnFem.width = 100;
+          btnFem.height = 100;
+          btnFem.inputEnabled = true;
+          btnFem.events.onInputDown.add(this.realizarAccion, this);
+        }
+        else{
+          console.log(NickName);
+          this.mostrarPlantilla();
+        }
+      }
+      else
+      {
+        console.log("No se puede");
+        throw new Error('Tu Browser no soporta LocalStorage!');
+      }
+  },
+
+  realizarAccion: function(sprite)
+{
+    genero = sprite.key;
+    if(genero == "msc")
+    {
+      //Si el genero es masculino
+      genero = "M";
+      console.log(genero);
+    }else
+    {
+      //Si el genero es femenino
+      genero = "F";
+      console.log(genero);
+    }
+
+    //Pregunto si el input esta lleno
+    if(nick.value == "" || nick.value == null)
+    {
+      //Esta vacio
+      alert("Se debe ingresar un NickName");
+    }
+    else
+    {
+      //No esta vacio
+      console.log("chevere");
+      this.procesar();
+
+      textoLogin.destroy();
+      nick.destroy();
+      btnMasc.destroy();
+      btnFem.destroy();
+      this.mostrarPlantilla();
+    }
+  },
+
+  mostrarPlantilla: function()
+  {
+    var style = { font: "30px Arial", fill: "#FE0023", align: "center" };
       
 
-      game.add.text(400, 100, 'ACCESORIOS PARA DUCHARSE', style);
+    game.add.text(400, 100, 'ACCESORIOS PARA DUCHARSE', style);
 
-      imagen0= game.add.sprite((valor_division * 2), 200, 'imagen0');
-      game.add.text((valor_division * 2), 200, '1', style);
-      imagen0.width = 150;
-      imagen0.height = 250;
+    imagen0= game.add.sprite((valor_division * 2), 200, 'imagen0');
+    game.add.text((valor_division * 2), 200, '1', style);
+    imagen0.width = 150;
+    imagen0.height = 250;
 
-      imagen1= game.add.sprite((valor_division * 3), 200, 'imagen1');
-      game.add.text((valor_division * 3), 200, '2', style);
-      imagen1.width = 150;
-      imagen1.height = 250;
+    imagen1= game.add.sprite((valor_division * 3), 200, 'imagen1');
+    game.add.text((valor_division * 3), 200, '2', style);
+    imagen1.width = 150;
+    imagen1.height = 250;
 
-      imagen2= game.add.sprite((valor_division * 4), 200, 'imagen2');
-      game.add.text((valor_division * 4), 200, '3', style);
-      imagen2.width = 150;
-      imagen2.height = 250;
+    imagen2= game.add.sprite((valor_division * 4), 200, 'imagen2');
+    game.add.text((valor_division * 4), 200, '3', style);
+    imagen2.width = 150;
+    imagen2.height = 250;
 
-      imagen3= game.add.sprite((valor_division * 5), 200, 'imagen3');
-      game.add.text((valor_division * 5), 200, '4', style);
-      imagen3.width = 150;
-      imagen3.height = 250;
+    imagen3= game.add.sprite((valor_division * 5), 200, 'imagen3');
+    game.add.text((valor_division * 5), 200, '4', style);
+    imagen3.width = 150;
+    imagen3.height = 250;
 
-
-
-
-
-
-
-      //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
-      //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
+    game.time.events.add(Phaser.Timer.SECOND * 2, this.fadePicture, this);
   },
 
   fadePicture: function()
@@ -119,68 +206,14 @@ var ducha_primer_nivel = {
 
   cambiarVista: function()
   {
-      var NickName = "";
-      if(window.sessionStorage)
-      {
-        NickName = sessionStorage.getItem("NickName");
-        if(NickName == null)
-        {
-          //Se agrega el input del nickname
-          nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
-            font: '30px Arial',
-            fill: '#212121',
-            fontWeight: 'bold',
-            height: 14,
-            width: 175,
-            borderWidth: 1,
-            padding: 20,
-            borderColor: '#000',
-            //borderRadius: 6,
-            placeHolder: 'nickname',
-            type: Fabrique.InputType.text
-          });
-
-          nick.blockInput = false;
-
-          //Se agrega el input del genero
-          genero = game.add.inputField(game.world.centerX - 150, game.world.centerY + 100, {
-            font: '30px Arial',
-            fill: '#212121',
-            fontWeight: 'bold',
-            height: 14,
-            width: 175,
-            borderWidth: 1,
-            padding: 20,
-            borderColor: '#000',
-            //borderRadius: 6,
-            placeHolder: 'Genero',
-            type: Fabrique.InputType.text
-          });
-
-          //Agregamos un boton para enviar la informacion
-          ok= game.add.sprite(game.world.centerX - 75,game.world.centerY + 200, 'ok');
-          ok.width = 100;
-          ok.height = 100;
-          ok.inputEnabled = true;
-          ok.events.onInputDown.add(this.procesar);
-        }
-        else{
-          console.log(NickName);
-          game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
-          game.state.start('ducha_primer_nivel_juego');
-        }
-      }
-      else
-      {
-        console.log("No se puede");
-        throw new Error('Tu Browser no soporta LocalStorage!');
-      }
+    game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
+    game.state.start('ducha_primer_nivel_juego');
   },
 
   procesar: function(){
     $.ajax({
       method: "GET",
-      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero.value,
+      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero,
       dataType: "json",
       success: function(data){
         var info = data;
@@ -194,8 +227,6 @@ var ducha_primer_nivel = {
           console.log("No se puede");
           throw new Error('Tu Browser no soporta LocalStorage!');
         }
-        game.state.add('ducha_primer_nivel_juego', ducha_primer_nivel_juego);
-        game.state.start('ducha_primer_nivel_juego');
       }
     });
   },

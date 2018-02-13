@@ -146,7 +146,7 @@ var leaderBoard = {
             //registro = game.add.text(game.world.centerX - 220, y, item.nickname+"\t"+item.estrellas+"\t"+item.updated_at, style);
             //registro.setShadow(-3, 3, 'rgba(0,0,0,0.5)', 0);
             var name = game.add.text(game.world.centerX - 300, y, item.nickname,style);
-            var copas = game.add.text(game.world.centerX - 100, y, item.nickname,style)
+            var copas = game.add.text(game.world.centerX - 100, y, item.copas,style)
             var estrellas = game.add.text(game.world.centerX + 100, y, item.estrellas,style);
             var fecha = game.add.text(game.world.centerX + 300, y, item.updated_at,style);
             //registro = game.add.text(game.world.centerX - 220, y, +"\t"++"\t"+, );

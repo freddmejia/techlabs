@@ -10,7 +10,7 @@ var nino;
 var copas;
 var levels;
 var star;
-
+var salir;
 //Se crea el esquema que va a tener el Menu
 var menu = {
   preload: function()
@@ -27,7 +27,8 @@ var menu = {
   	game.load.image('copas', 'img/scoreButton.png');
   	game.load.image('levels', 'img/levels.png');
   	game.load.image('star', 'img/starButton.png');
-  	game.load.image('nino', 'img/img_nino.png');
+		game.load.image('nino', 'img/img_nino.png');
+		game.load.image('salir','img/logout.png');
   },
   create: function()
   {
@@ -56,7 +57,9 @@ var menu = {
   		star = game.add.image(game.world.centerX - 20, game.world.centerY  + 120, 'star');
   		star.width = 60;
   		star.height = 60;
-
+			salir = game.add.image(game.world.centerX - 20, game.world.centerY  + 180 , 'salir');
+			salir.width = 60;
+			salir.height = 60;
   	}
   	else
   	{
@@ -77,7 +80,29 @@ var menu = {
   		button = game.add.button(game.world.centerX - 315, 200, 'botones_inicio', this.actionOnClick, this, 1,0,2);
   		nino = game.add.image(game.world.centerX - 150, game.world.centerY + 50, 'nino');
   		nino.width = 250;
-  		nino.height = 250;
+			nino.height = 250;
+
+			var NickName = "";
+				if(window.sessionStorage)
+        {
+					NickName = sessionStorage.getItem("NickName");
+					console.log(NickName);
+					if(NickName != null)
+					{
+					//sessionStorage.setItem("NickName", nick.value);
+					salir = game.add.image(20, game.world.centerY , 'salir');
+					salir.width = 100;
+					salir.height = 100;
+					salir.inputEnabled = true;
+					salir.events.onInputDown.add(this.salir, this);
+					console.log(NickName);
+					}
+        }
+        else
+        {
+          console.log("No se puede");
+          throw new Error('Tu Browser no soporta LocalStorage!');
+        }			
   	}
 
   	//Se habilita la opcion de poder pulsar las imagenes como botones
@@ -88,14 +113,35 @@ var menu = {
   	//Se añade la funcion que va a procesar el click
   	copas.events.onInputDown.add(this.abrirCopas, this);
   	levels.events.onInputDown.add(this.abrirNiveles, this);
-  	star.events.onInputDown.add(this.abrirRanking, this);
+		star.events.onInputDown.add(this.abrirRanking, this);
   },
 
   //Funcion que abre la ventana de copas
   abrirCopas: function()
   {
     console.log('Vista de copas');
-  },
+	},
+	
+	salir: function()
+	{
+				var NickName = "";
+				if(window.sessionStorage)
+        {
+					NickName = sessionStorage.getItem("NickName");
+					if(NickName != null || NickName != "")
+					{
+					//sessionStorage.setItem("NickName", nick.value);
+					alert("Nos vemos!!");
+					sessionStorage.removeItem("NickName");
+					game.state.start('Menu');
+					}
+        }
+        else
+        {
+          console.log("No se puede");
+          throw new Error('Tu Browser no soporta LocalStorage!');
+        }
+	},
 
   //Funcion que abre la ventana de niveles
   abrirNiveles: function()

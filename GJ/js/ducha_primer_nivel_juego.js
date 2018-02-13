@@ -39,6 +39,7 @@ var aaa=[];
 var pos1 = 0;
 var pos2 = 0;
 var jugar;
+var reload;
 var ducha_primer_nivel_juego = {
   preload: function()
   {
@@ -98,8 +99,9 @@ var ducha_primer_nivel_juego = {
     game.load.image('imagen2','img/ducha/3.png');
     game.load.image('imagen3','img/ducha/4.png');
  
-    game.load.image('jugar',  'img/start1.png');
+    game.load.image('jugar',  'img/ok.png');
     game.load.image('Back', 'img/backHome.png');
+    game.load.image('reload', 'img/Reload.png');
   },
 
   create: function()
@@ -121,9 +123,13 @@ var ducha_primer_nivel_juego = {
     }
 
     this.barrido();
-      jugar= game.add.button(550, 650, 'jugar', this.evaluar, this, 1,0,2);
-      jugar.width = 300;
+      jugar= game.add.button(600, 500, 'jugar', this.evaluar, this, 1,0,2);
+      jugar.width = 100;
       jugar.height = 100;
+
+      reload = game.add.button(700, 500, 'reload', this.recargar, this, 0, 0,0);
+      reload.width = 100;
+      reload.height = 100;
       
       back = game.add.image(game.world.centerX + 500, 20, 'Back');
       back.width = 150;
@@ -136,6 +142,13 @@ var ducha_primer_nivel_juego = {
         game.state.add('niveles', niveles);
     game.state.start('niveles'); 
   },
+
+  recargar: function()
+  {
+    game.state.start('ducha_primer_nivel');
+  },
+
+
   getPosition: function(numero)
   {
         var nu=0,nu_valido=0;

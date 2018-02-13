@@ -32,6 +32,7 @@ var aa=[];
 var pos1 = 0;
 var pos2 = 0;
 var jugar;
+var reload;
 var herramientas_juego_lavar_boca = {
   preload: function()
   {
@@ -86,8 +87,9 @@ var herramientas_juego_lavar_boca = {
     game.load.image('imagen9','img/dientes/9.png');
     game.load.image('imagen10','img/dientes/10.png');
 
-    game.load.image('jugar',  'img/start1.png');
+    game.load.image('jugar',  'img/ok.png');
     game.load.image('Back', 'img/backHome.png');
+    game.load.image('reload', 'img/Reload.png');
   },
 
   create: function()
@@ -116,9 +118,13 @@ var herramientas_juego_lavar_boca = {
 
 this.barrido();
 
-      jugar= game.add.button(550, 650, 'jugar', this.evaluar, this, 1,0,2);
-      jugar.width = 300;
+      jugar= game.add.button(600, 500, 'jugar', this.evaluar, this, 1,0,2);
+      jugar.width = 100;
       jugar.height = 100;
+
+      reload = game.add.button(700, 500, 'reload', this.recargar, this, 0, 0,0);
+      reload.width = 100;
+      reload.height = 100;
 
       back = game.add.image(game.world.centerX + 500, 20, 'Back');
       back.width = 150;
@@ -131,6 +137,12 @@ this.barrido();
         game.state.add('niveles', niveles);
     game.state.start('niveles'); 
   },
+
+  recargar: function()
+  {
+    game.state.start('herramientas_lavar_boca');
+  },
+
   getPosition: function(numero)
   {
         var nu=0,nu_valido=0;

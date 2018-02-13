@@ -21,7 +21,9 @@ var posiciones = [];
 var tween;
 var nick;
 var genero;
-var ok;
+var btnMasc;
+var btnFem;
+var textoLogin;
 var herramientas_lavar_manos = {
   preload: function()
   {
@@ -37,7 +39,8 @@ var herramientas_lavar_manos = {
   	game.load.image('izquierda', 'img/izquierda.png');
   	game.load.image('imagen9','img/manos/9.png');
   	game.load.image('imagen10','img/manos/10.png');
-    game.load.image('ok','img/ok.png');
+    game.load.image('msc','img/msc.png');
+    game.load.image('fem','img/fem.png');
 
   	//cargar la imagen
   	group=game.add.group();
@@ -52,6 +55,106 @@ var herramientas_lavar_manos = {
     console.log('create');
       //console.log(game.world.centerX - 600);
       valor_division = window.screen.width / 2;
+    
+var NickName = "";
+if(window.sessionStorage)
+{
+  NickName = sessionStorage.getItem("NickName");
+  if(NickName == null || NickName == "")
+  {
+
+    var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
+      
+    textoLogin = game.add.text(400, 100, 'INGRESE SU NOMBRE Y GENERO', style);
+
+    //Se agrega el input del nickname
+    nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
+      font: '30px Arial',
+      fill: '#212121',
+      fontWeight: 'bold',
+      height: 14,
+      width: 175,
+      borderWidth: 1,
+      padding: 20,
+      borderColor: '#000',
+      //borderRadius: 6,
+      placeHolder: 'nickname',
+      type: Fabrique.InputType.text
+    });
+
+    nick.blockInput = false;
+
+    btnMasc = game.add.sprite(game.world.centerX - 200, game.world.centerY + 200, 'msc');
+    btnMasc.width = 100;
+    btnMasc.height = 100;
+    btnMasc.inputEnabled = true;
+    btnMasc.events.onInputDown.add(this.realizarAccion, this);
+
+    btnFem = game.add.sprite(game.world.centerX, game.world.centerY + 200, 'fem');
+    btnFem.width = 100;
+    btnFem.height = 100;
+    btnFem.inputEnabled = true;
+    btnFem.events.onInputDown.add(this.realizarAccion, this);
+  }
+  else{
+    console.log(NickName);
+    this.mostrarPlantilla();
+  }
+}
+else
+{
+  console.log("No se puede");
+  throw new Error('Tu Browser no soporta LocalStorage!');
+}
+
+},
+
+  realizarAccion: function(sprite)
+  {
+    genero = sprite.key;
+    if(genero == "msc")
+    {
+      //Si el genero es masculino
+      genero = "M";
+      console.log(genero);
+    }else
+    {
+      //Si el genero es femenino
+      genero = "F";
+      console.log(genero);
+    }
+
+    //Pregunto si el input esta lleno
+    if(nick.value == "" || nick.value == null)
+    {
+      //Esta vacio
+      alert("Se debe ingresar un NickName");
+    }
+    else
+    {
+      //No esta vacio
+      console.log("chevere");
+      this.procesar();
+
+      textoLogin.destroy();
+      nick.destroy();
+      btnMasc.destroy();
+      btnFem.destroy();
+      this.mostrarPlantilla();
+    }
+  },
+
+  fadePicture: function()
+  {
+    game.add.tween(imagen9).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+   
+    tween = game.add.tween(imagen10).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+    tween.onComplete.add(this.cambiarVista, this);
+    tween.start();
+  },
+
+  mostrarPlantilla: function()
+  {
       var style = { font: "30px Arial", fill: "#003AFE", align: "center" };
       
       game.add.text(400, 100, 'ACCESORIOS PARA LAVAR MANOS', style);
@@ -65,24 +168,8 @@ var herramientas_lavar_manos = {
       game.add.text(705, 205, '2', style);
       imagen10.width = 160;
       imagen10.height = 250;
-      
 
-      //4 significa los segundos, Phaser.Timer.SECOND 1 segundo es 1000 milisegundos
-      game.time.events.add(Phaser.Timer.SECOND * 1, this.fadePicture, this);
-      //timer=game.time.events.loop(Phaser.Timer.SECOND, fadePicture, this);
-
-      //input = game.add.inputField(10, 90);
-
-
-  },
-
-  fadePicture: function()
-  {
-    game.add.tween(imagen9).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-   
-    tween = game.add.tween(imagen10).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-    tween.onComplete.add(this.cambiarVista, this);
-    tween.start();
+      game.time.events.add(Phaser.Timer.SECOND * 2, this.fadePicture, this);
   },
 
   update: function()
@@ -119,74 +206,19 @@ var herramientas_lavar_manos = {
 
 */
 
-var NickName = "";
-if(window.sessionStorage)
-{
-  NickName = sessionStorage.getItem("NickName");
-  if(NickName == null)
-  {
-    //Se agrega el input del nickname
-    nick = game.add.inputField(game.world.centerX - 150, game.world.centerY, {
-      font: '30px Arial',
-      fill: '#212121',
-      fontWeight: 'bold',
-      height: 14,
-      width: 175,
-      borderWidth: 1,
-      padding: 20,
-      borderColor: '#000',
-      //borderRadius: 6,
-      placeHolder: 'nickname',
-      type: Fabrique.InputType.text
-    });
-
-    nick.blockInput = false;
-
-    //Se agrega el input del genero
-    genero = game.add.inputField(game.world.centerX - 150, game.world.centerY + 100, {
-      font: '30px Arial',
-      fill: '#212121',
-      fontWeight: 'bold',
-      height: 14,
-      width: 175,
-      borderWidth: 1,
-      padding: 20,
-      borderColor: '#000',
-      //borderRadius: 6,
-      placeHolder: 'Genero',
-      type: Fabrique.InputType.text
-    });
-
-    //Agregamos un boton para enviar la informacion
-    ok= game.add.sprite(game.world.centerX - 75,game.world.centerY + 200, 'ok');
-    ok.width = 100;
-    ok.height = 100;
-    ok.inputEnabled = true;
-    ok.events.onInputDown.add(this.procesar);
-  }
-  else{
-    console.log(NickName);
-    game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
-    game.state.start('herramientas_juego_lavar_manos');
-  }
-}
-else
-{
-  console.log("No se puede");
-  throw new Error('Tu Browser no soporta LocalStorage!');
-}
-    
-
-
-    /*    
+      /*    
     game.state.add('juego_manos', juego_manos);
     game.state.start('juego_manos');*/
+
+    game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
+    game.state.start('herramientas_juego_lavar_manos');
+
   },
 
   procesar: function(){
     $.ajax({
       method: "GET",
-      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero.value,
+      url: "http://localhost:8000/api/jugadorNuevo/" + nick.value + "/genero/" + genero,
       dataType: "json",
       success: function(data){
         var info = data;
@@ -200,8 +232,8 @@ else
           console.log("No se puede");
           throw new Error('Tu Browser no soporta LocalStorage!');
         }
-        game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
-        game.state.start('herramientas_juego_lavar_manos');
+        //game.state.add('herramientas_juego_lavar_manos', herramientas_juego_lavar_manos);
+        //game.state.start('herramientas_juego_lavar_manos');
       }
     });
   },
