@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function() 
 {
-    
+    Route::get('/configuracion', 'ConfiguracionController@index');
+    Route::post('/configuracionActualizar', 'ConfiguracionController@ActualizarConfiguracion');
 });
 
