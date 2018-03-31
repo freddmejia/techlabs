@@ -226,6 +226,8 @@ else
         if(window.sessionStorage)
         {
           sessionStorage.setItem("NickName", nick.value);
+          sessionStorage.setItem("Puntaje", "0");
+          console.log("Puntaje" + sessionStorage.getItem("Puntaje"));
         }
         else
         {

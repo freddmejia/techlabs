@@ -188,20 +188,22 @@ var dientes_segundo_nivel_juego = {
     //console.log('Pulsado');
     //this.getPosition(1);
     this.barrido();
-    var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
-    //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-    //this.verificarImagenes();
-
+    var nEstado = "";
     if(this.verificarImagenes())
     {
-      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-
+      var style = { font: "30px Arial", fill: "#00FF00", align: "center" };
+      text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, nEstado, style);
+      nEstado = "FELICIDADES HAS GANADO!!!";
+      text.setText(nEstado);
       var NickName = "";
       var estrellas = "";
       if(window.sessionStorage)
       {
         sessionStorage.setItem("Estrellas", "3");
         estrellas = sessionStorage.getItem("Estrellas");
+        var score = parseInt(sessionStorage.getItem("Puntaje")) + parseInt(estrellas);
+        sessionStorage.removeItem("Puntaje");
+        sessionStorage.setItem("Puntaje", score);
         console.log(estrellas);
         NickName = sessionStorage.getItem("NickName");
       }
@@ -230,9 +232,10 @@ var dientes_segundo_nivel_juego = {
       game.state.start('dientes_segundo_nivel');*/
     }
     else {
-
-      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "VUELVE A INTENTARLO!!!", style);
-
+      var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
+      estado = "VUELVE A INTENTARLO!!!";
+      text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, nEstado, style);
+      text.setText(estado);
     }
 
 
@@ -362,7 +365,10 @@ var dientes_segundo_nivel_juego = {
   },
 
   onDragStart: function(sprite, pointer) {
-
+    if(text != 0)
+    {
+      text.destroy();
+    }
       result = "Dragging " + sprite.key;
       posImagenInX = sprite.x;
       posImagenInY = sprite.y;

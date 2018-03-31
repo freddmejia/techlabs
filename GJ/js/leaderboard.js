@@ -26,7 +26,7 @@ WebFontConfig = {
 var leaderBoard = {
   preload: function()
   {
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
     game.scale.setScreenSize(true);

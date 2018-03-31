@@ -30,6 +30,7 @@ var largo=0;
 //Creo estructura de dato que me permitira guardar las posiciones ya llenadas
 //Primero las creo vacias
 var posiciones = [];
+var text;
 var ran=0;
 var anterior=0;
 var cont=0;
@@ -195,12 +196,15 @@ this.barrido();
     //console.log('Pulsado');
     //this.getPosition(1);
     this.barrido();
-    var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
+    
     //var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-    var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "FELICIDADES HAS GANADO!!!", style);
-
+    var nEstado = "";
     if(this.verificarImagenes())
     {
+      var style = { font: "30px Arial", fill: "#00FF00", align: "center" };
+      text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, nEstado, style);
+      nEstado = "FELICIDADES HAS GANADO!!!";
+      text.setText(nEstado);
       var NickName = "";
       var estrellas = "";
       if(window.localStorage)
@@ -208,7 +212,11 @@ this.barrido();
 
         localStorage.setItem("Estrellas", "3");
         var estrellas = localStorage.getItem("Estrellas");
+        var score = parseInt(sessionStorage.getItem("Puntaje")) + parseInt(estrellas);
+        sessionStorage.removeItem("Puntaje");
+        sessionStorage.setItem("Puntaje", score);
         console.log(estrellas);
+        console.log("Puntaje" + sessionStorage.getItem("Puntaje"));
         NickName = sessionStorage.getItem("NickName");
       }
       else
@@ -235,12 +243,13 @@ this.barrido();
     }
     else {
       //sacar el numero de aciertos y redireccionar al escenario
-
-      var text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, "VUELVE A INTENTARLO!!!", style);
-
+      var style = { font: "30px Arial", fill: "#FE000C", align: "center" };
+      estado = "VUELVE A INTENTARLO!!!";
+      text = game.add.text(game.world.centerY - 250 , game.world.centerY + 250, nEstado, style);
+      text.setText(estado);
     }
     //console.log(this.changeImages(1));
-
+    
     //console.log('Pulsado');
 
     //console.log(group.length);
@@ -357,11 +366,14 @@ this.barrido();
 
       result = "Down " + sprite.key;
       console.log('down', sprite.key);
-
   },
 
   onDragStart: function(sprite, pointer) {
-
+    console.log(text);
+    if(text != 0)
+    {
+      text.destroy();
+    }
       result = "Dragging " + sprite.key;
       posImagenInX = sprite.x;
       posImagenInY = sprite.y;

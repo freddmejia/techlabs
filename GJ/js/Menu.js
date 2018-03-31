@@ -11,14 +11,19 @@ var copas;
 var levels;
 var star;
 var salir;
+var nSession;
+var puntaje;
+var admin;
 //Se crea el esquema que va a tener el Menu
 var menu = {
   preload: function()
   {
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.scaleMode = Phaser.ScaleManager.aspectRatio;
     game.scale.pageAlignHorizontally = true;
     game.scale.pageAlignVertically = true;
-    game.scale.setScreenSize(true);
+	game.scale.setScreenSize(true);
+	game.scale.setShowAll();
+	game.scale.refresh();
     //Aqui se cargan los recursos que van a ser usados en el juego
   	game.load.image('fondo', 'img/background.jpg');
   	game.load.image('texto_bienvenido', 'img/bienvenido1.png');
@@ -29,6 +34,7 @@ var menu = {
   	game.load.image('star', 'img/starButton.png');
 		game.load.image('nino', 'img/img_nino.png');
 		game.load.image('salir','img/logout.png');
+		game.load.image('admin','img/adminLogo.png');
   },
   create: function()
   {
@@ -36,7 +42,8 @@ var menu = {
   	fondo = game.add.image(0,0,'fondo');
   	fondo.width = screen.width;
   	fondo.height =  screen.height;
-  	texto_bienvenido = game.add.image(0,0, 'texto_bienvenido');
+		texto_bienvenido = game.add.image(0,0, 'texto_bienvenido');
+		
   	//over , out, down
 
     console.log("esto " + game.width);
@@ -47,7 +54,7 @@ var menu = {
   		texto_bienvenido.scale.setTo(window.devicePixelRatio/6,window.devicePixelRatio/6);
   		button = game.add.button(game.world.centerX - 90, 100, 'botones_inicio', this.actionOnClick, this, 1,0,2);
   		button.scale.setTo(window.devicePixelRatio/6,window.devicePixelRatio/6);
-  		copas = game.add.image(game.world.centerX - 20, game.world.centerY  - 50, 'copas');
+  		copas = game.add.image(game.world.centerX - 20, game.world.centerY  - 50, 'admin');
   		copas.width = 60;
   		copas.height = 60;
   		copas.enable
@@ -68,9 +75,9 @@ var menu = {
   		console.log(window.innerHeight);
   		footer.width = screen.width;
   		footer.height = 100;
-  		copas = game.add.image(game.world.centerX - 600, game.world.centerY + 300, 'copas');
-  		copas.width = 90;
-  		copas.height = 90;
+  		admin = game.add.image(game.world.centerX - 600, game.world.centerY + 300, 'admin');
+  		admin.width = 90;
+  		admin.height = 90;
   		levels = game.add.image(game.world.centerX - 100, game.world.centerY + 300, 'levels');
   		levels.width = 90;
   		levels.height = 90;
@@ -86,6 +93,7 @@ var menu = {
 				if(window.sessionStorage)
         {
 					NickName = sessionStorage.getItem("NickName");
+					Score = sessionStorage.getItem("Puntaje");
 					console.log(NickName);
 					if(NickName != null)
 					{
@@ -96,6 +104,13 @@ var menu = {
 					salir.inputEnabled = true;
 					salir.events.onInputDown.add(this.salir, this);
 					console.log(NickName);
+					var style = { font: "40px Arial", fill: "#ffffff", align: "center" };
+					game.add.text(20 , game.world.centerY + 100 , NickName, style);
+					if(Score == null)
+					{
+						sessionStorage.setItem("Puntaje", "0");
+					}
+					game.add.text(20 , game.world.centerY + 140 , Score, style);
 					}
         }
         else
@@ -106,12 +121,12 @@ var menu = {
   	}
 
   	//Se habilita la opcion de poder pulsar las imagenes como botones
-  	copas.inputEnabled = true;
+  	admin.inputEnabled = true;
   	levels.inputEnabled = true;
   	star.inputEnabled = true;
 
   	//Se añade la funcion que va a procesar el click
-  	copas.events.onInputDown.add(this.abrirCopas, this);
+  	admin.events.onInputDown.add(this.abrirCopas, this);
   	levels.events.onInputDown.add(this.abrirNiveles, this);
 		star.events.onInputDown.add(this.abrirRanking, this);
   },
@@ -119,7 +134,7 @@ var menu = {
   //Funcion que abre la ventana de copas
   abrirCopas: function()
   {
-    console.log('Vista de copas');
+		window.open("http://localhost:8010");
 	},
 	
 	salir: function()
@@ -133,6 +148,7 @@ var menu = {
 					//sessionStorage.setItem("NickName", nick.value);
 					alert("Nos vemos!!");
 					sessionStorage.removeItem("NickName");
+					sessionStorage.removeItem("Puntaje");
 					game.state.start('Menu');
 					}
         }
